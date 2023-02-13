@@ -1,0 +1,956 @@
+,day,flight,error
+0,2020-05-09,BR391.csv,Did not land.
+1,2020-05-09,CI781.csv,Did not land.
+2,2020-05-09,CX767.csv,Did not land.
+3,2020-05-09,QH201.csv,Did not land.
+4,2020-05-09,VJ125.csv,Did not land.
+5,2020-05-09,VJ139.csv,Did not land at TSN.
+6,2020-05-09,VJ647.csv,Did not land.
+7,2020-05-09,VN207.csv,Did not land.
+8,2020-05-09,VN243.csv,Did not land.
+9,2020-05-09,VN8052.csv,Did not land.
+10,2020-05-10,FX5194.csv,Did not land at TSN.
+11,2020-05-13,RH319.csv,Did not land.
+12,2020-05-14,VJ211.csv,Did not land.
+13,2020-05-19,VJ145.csv,Did not land.
+14,2020-05-24,FX5194.csv,Did not land at TSN.
+15,2020-05-24,TK6470.csv,Did not land.
+16,2020-05-24,VN177.csv,Did not land at TSN.
+17,2020-05-27,QH219.csv,Did not land.
+18,2020-05-27,VJ625.csv,Did not land.
+19,2020-05-31,FX5194.csv,Did not land at TSN.
+20,2020-05-31,VJ271.csv,Did not land.
+21,2020-06-02,VN237.csv,Did not land.
+22,2020-06-03,BL765.csv,Did not land.
+23,2020-06-03,BL769.csv,Did not land.
+24,2020-06-03,CI783.csv,Did not land.
+25,2020-06-03,QH219.csv,Did not land.
+26,2020-06-03,VJ121.csv,Did not land.
+27,2020-06-03,VJ139.csv,Did not land.
+28,2020-06-03,VJ141.csv,Did not land at TSN.
+29,2020-06-03,VJ211.csv,Did not land.
+30,2020-06-03,VJ251.csv,Did not land.
+31,2020-06-03,VJ277.csv,Did not land.
+32,2020-06-03,VJ336.csv,Did not land at TSN.
+33,2020-06-03,VJ863.csv,Did not land.
+34,2020-06-03,VN1193.csv,Did not land.
+35,2020-06-03,VN1265.csv,Did not land.
+36,2020-06-03,VN1373.csv,Did not land.
+37,2020-06-03,VN213.csv,Did not land.
+38,2020-06-03,VN257.csv,Did not land.
+39,2020-06-03,VN259.csv,Did not land.
+40,2020-06-03,VN263.csv,Did not land at TSN.
+41,2020-06-03,VN8072.csv,Did not land.
+42,2020-06-04,BL769.csv,Did not land.
+43,2020-06-04,VN8072.csv,Did not land.
+44,2020-06-06,AI1344.csv,Did not land.
+45,2020-06-06,BL765.csv,Did not land.
+46,2020-06-06,CI783.csv,Did not land.
+47,2020-06-06,QH1313.csv,Did not land.
+48,2020-06-06,QH153.csv,Did not land.
+49,2020-06-06,QH219.csv,Did not land.
+50,2020-06-06,VJ139.csv,Did not land.
+51,2020-06-06,VJ141.csv,Did not land at TSN.
+52,2020-06-06,VJ143.csv,Did not land at TSN.
+53,2020-06-06,VJ145.csv,Did not land at TSN.
+54,2020-06-06,VJ211.csv,Did not land.
+55,2020-06-06,VJ213.csv,Did not land.
+56,2020-06-06,VJ336.csv,Did not land.
+57,2020-06-06,VN1193.csv,Did not land.
+58,2020-06-06,VN1265.csv,Did not land.
+59,2020-06-06,VN127.csv,Did not land.
+60,2020-06-06,VN1395.csv,Did not land.
+61,2020-06-06,VN213.csv,Did not land.
+62,2020-06-06,VN259.csv,Did not land.
+63,2020-06-06,VN263.csv,Did not land.
+64,2020-06-06,VN772.csv,Did not land.
+65,2020-06-06,VN7828.csv,Did not land.
+66,2020-06-06,VN8092.csv,Did not land.
+67,2020-06-09,VJ159.csv,Did not land.
+68,2020-06-11,VN123.csv,Did not land.
+69,2020-06-14,BL769.csv,Did not land.
+70,2020-06-14,CI783.csv,Did not land.
+71,2020-06-14,FX49.csv,Did not land at TSN.
+72,2020-06-14,FX5194.csv,Did not land.
+73,2020-06-14,QH1522.csv,Did not land.
+74,2020-06-14,QH1971.csv,Did not land.
+75,2020-06-14,VJ121.csv,Did not land.
+76,2020-06-14,VJ213.csv,Did not land.
+77,2020-06-14,VJ217.csv,Did not land.
+78,2020-06-14,VJ243.csv,Did not land.
+79,2020-06-14,VJ263.csv,Did not land.
+80,2020-06-14,VJ277.csv,Did not land.
+81,2020-06-14,VJ324.csv,Did not land.
+82,2020-06-14,VN121.csv,Did not land.
+83,2020-06-14,VN1271.csv,Did not land.
+84,2020-06-14,VN211.csv,Did not land.
+85,2020-06-14,VN257.csv,Did not land.
+86,2020-06-14,VN301.csv,Did not land.
+87,2020-06-14,VN409.csv,Did not land.
+88,2020-06-14,VN7389.csv,Did not land.
+89,2020-06-15,VJ621.csv,Did not land at TSN.
+90,2020-06-16,K4620.csv,Did not land.
+91,2020-06-16,VJ271.csv,Did not land.
+92,2020-06-17,BR395.csv,Did not land.
+93,2020-06-18,VJ151.csv,Did not land.
+94,2020-06-20,VJ207.csv,Did not land.
+95,2020-06-21,AF258.csv,Did not land at TSN.
+96,2020-06-21,FX5194.csv,Did not land.
+97,2020-06-21,QH1321.csv,Did not land.
+98,2020-06-21,VJ6131.csv,Did not land.
+99,2020-06-24,CA609.csv,Did not land at TSN.
+100,2020-06-24,VJ281.csv,Did not land.
+101,2020-06-26,FX5194.csv,Did not land.
+102,2020-06-26,VJ249.csv,Did not land at TSN.
+103,2020-06-26,VN1830.csv,Did not land at TSN.
+104,2020-06-27,VN217.csv,Did not land.
+105,2020-06-28,FX5194.csv,Did not land.
+106,2020-06-28,VN8060.csv,Did not land.
+107,2020-06-28,VN8608.csv,Did not land.
+108,2020-06-30,VN1393.csv,Did not land.
+109,2020-07-01,CI784.csv,Did not land at TSN.
+110,2020-07-01,VJ6131.csv,Did not land.
+111,2020-07-02,KE683.csv,Did not land.
+112,2020-07-02,Q6165.csv,Did not land at TSN.
+113,2020-07-03,VN301.csv,Did not land.
+114,2020-07-04,CI784.csv,Did not land.
+115,2020-07-05,FX5194.csv,Did not land.
+116,2020-07-08,KE8389.csv,Did not land at TSN.
+117,2020-07-09,BL769.csv,Did not land.
+118,2020-07-09,CI783.csv,Did not land.
+119,2020-07-09,CX799.csv,Did not land.
+120,2020-07-09,OZ395.csv,Did not land.
+121,2020-07-09,QH1545.csv,Did not land.
+122,2020-07-09,VJ143.csv,Did not land.
+123,2020-07-09,VJ165.csv,Did not land.
+124,2020-07-09,VJ167.csv,Did not land.
+125,2020-07-09,VJ189.csv,Did not land.
+126,2020-07-09,VJ221.csv,Did not land.
+127,2020-07-09,VJ249.csv,Did not land.
+128,2020-07-09,VJ271.csv,Did not land.
+129,2020-07-09,VJ311.csv,Did not land.
+130,2020-07-09,VJ328.csv,Did not land.
+131,2020-07-09,VJ639.csv,Did not land.
+132,2020-07-09,VN1183.csv,Did not land.
+133,2020-07-09,VN1187.csv,Did not land.
+134,2020-07-09,VN1267.csv,Did not land.
+135,2020-07-09,VN1279.csv,Did not land.
+136,2020-07-09,VN1379.csv,Did not land.
+137,2020-07-09,VN1826.csv,Did not land.
+138,2020-07-09,VN215.csv,Did not land.
+139,2020-07-09,VN269.csv,Did not land.
+140,2020-07-09,VN7828.csv,Did not land at TSN.
+141,2020-07-09,VN8078.csv,Did not land.
+142,2020-07-10,CV8575.csv,Did not land.
+143,2020-07-11,VN8056.csv,Did not land at TSN.
+144,2020-07-11,VN8084.csv,Did not land at TSN.
+145,2020-07-11,VN8606.csv,Did not land at TSN.
+146,2020-07-12,FX5194.csv,Did not land.
+147,2020-07-12,VN8056.csv,Did not land at TSN.
+148,2020-07-12,VN8606.csv,Did not land at TSN.
+149,2020-07-13,FX5775.csv,Did not land at TSN.
+150,2020-07-13,VJ283.csv,Did not land.
+151,2020-07-13,VN8084.csv,Did not land at TSN.
+152,2020-07-14,FX6002.csv,Did not land at TSN.
+153,2020-07-15,RPC6188.csv,Did not land at TSN.
+154,2020-07-15,VN8056.csv,Did not land at TSN.
+155,2020-07-15,VN8084.csv,Did not land at TSN.
+156,2020-07-16,BL681.csv,Did not land.
+157,2020-07-16,BL769.csv,Did not land.
+158,2020-07-16,BL775.csv,Did not land at TSN.
+159,2020-07-16,CX799.csv,Did not land.
+160,2020-07-16,QH213.csv,Did not land.
+161,2020-07-16,VJ165.csv,Did not land.
+162,2020-07-16,VJ167.csv,Did not land.
+163,2020-07-16,VJ225.csv,Did not land.
+164,2020-07-16,VJ249.csv,Did not land.
+165,2020-07-16,VJ385.csv,Did not land.
+166,2020-07-16,VJ627.csv,Did not land.
+167,2020-07-16,VJ637.csv,Did not land.
+168,2020-07-16,VN1183.csv,Did not land.
+169,2020-07-16,VN1267.csv,Did not land.
+170,2020-07-16,VN133.csv,Did not land.
+171,2020-07-16,VN1385.csv,Did not land.
+172,2020-07-16,VN1395.csv,Did not land.
+173,2020-07-16,VN1397.csv,Did not land at TSN.
+174,2020-07-16,VN1826.csv,Did not land.
+175,2020-07-16,VN215.csv,Did not land.
+176,2020-07-16,VN233.csv,Did not land at TSN.
+177,2020-07-16,VN263.csv,Did not land.
+178,2020-07-16,VN269.csv,Did not land.
+179,2020-07-17,CV7324.csv,Did not land.
+180,2020-07-17,CV8575.csv,Did not land.
+181,2020-07-17,VN233.csv,Did not land.
+182,2020-07-17,VN8056.csv,Did not land at TSN.
+183,2020-07-17,VN8084.csv,Did not land at TSN.
+184,2020-07-17,VN8086.csv,Did not land at TSN.
+185,2020-07-18,VN8056.csv,Did not land at TSN.
+186,2020-07-18,VN8078.csv,Did not land at TSN.
+187,2020-07-19,FX5194.csv,Did not land.
+188,2020-07-19,VJ143.csv,Did not land at TSN.
+189,2020-07-19,VJ159.csv,Did not land at TSN.
+190,2020-07-19,VJ6131.csv,Did not land.
+191,2020-07-19,VN1876.csv,Did not land at TSN.
+192,2020-07-19,VN8050.csv,Did not land.
+193,2020-07-19,VN8056.csv,Did not land at TSN.
+194,2020-07-19,VN8084.csv,Did not land at TSN.
+195,2020-07-20,VN1349.csv,Did not land.
+196,2020-07-21,VN8078.csv,Did not land at TSN.
+197,2020-07-22,VN8056.csv,Did not land at TSN.
+198,2020-07-22,VN8084.csv,Did not land at TSN.
+199,2020-07-23,VN1267.csv,Did not land.
+200,2020-07-23,VN8078.csv,Did not land at TSN.
+201,2020-07-23,VN8084.csv,Did not land at TSN.
+202,2020-07-24,VN8078.csv,Did not land at TSN.
+203,2020-07-24,VN8084.csv,Did not land at TSN.
+204,2020-07-26,VN7283.csv,Did not land at TSN.
+205,2020-07-26,VN8056.csv,Did not land at TSN.
+206,2020-07-27,VN8056.csv,Did not land at TSN.
+207,2020-07-28,0V8079.csv,Did not land at TSN.
+208,2020-07-29,FX9002.csv,Did not land.
+209,2020-07-29,LD562.csv,Did not land at TSN.
+210,2020-07-29,VJ251.csv,Did not land.
+211,2020-07-29,VJ687.csv,Did not land.
+212,2020-07-29,VN215.csv,Did not land.
+213,2020-07-29,VN8078.csv,Did not land at TSN.
+214,2020-07-30,VJ127.csv,Did not land.
+215,2020-07-30,VJ303.csv,Did not land at TSN.
+216,2020-07-30,VN1832.csv,Did not land.
+217,2020-07-30,VN8078.csv,Did not land at TSN.
+218,2020-07-31,VJ167.csv,Did not land at TSN.
+219,2020-07-31,VN8078.csv,Did not land at TSN.
+220,2020-08-02,VN604.csv,Did not land.
+221,2020-08-03,VJ326.csv,Did not land.
+222,2020-08-04,QH1522.csv,Did not land.
+223,2020-08-04,VN1393.csv,Did not land.
+224,2020-08-04,VN8056.csv,Did not land.
+225,2020-08-05,CZ489.csv,Did not land.
+226,2020-08-05,QH201.csv,Did not land.
+227,2020-08-05,VN283.csv,Did not land.
+228,2020-08-06,2Y8816.csv,Did not land.
+229,2020-08-06,VJ307.csv,Did not land.
+230,2020-08-07,BL545.csv,Did not land.
+231,2020-08-07,CZ489.csv,Did not land.
+232,2020-08-07,QH211.csv,Did not land.
+233,2020-08-07,VJ231.csv,Did not land.
+234,2020-08-07,VJ303.csv,Did not land.
+235,2020-08-07,VN1393.csv,Did not land.
+236,2020-08-07,VN1661.csv,Did not land.
+237,2020-08-08,2Y8816.csv,Did not land at TSN.
+238,2020-08-09,FX5194.csv,Did not land.
+239,2020-08-10,BL791.csv,Did not land.
+240,2020-08-10,QH207.csv,Did not land.
+241,2020-08-10,VJ173.csv,Did not land.
+242,2020-08-10,VN1191.csv,Did not land.
+243,2020-08-10,VN1269.csv,Did not land.
+244,2020-08-10,VN221.csv,Did not land.
+245,2020-08-11,VN217.csv,Did not land.
+246,2020-08-11,VN7401.csv,Did not land.
+247,2020-08-12,VJ7346.csv,Did not land at TSN.
+248,2020-08-13,VJ167.csv,Did not land.
+249,2020-08-16,FX5194.csv,Did not land.
+250,2020-08-19,VN1189.csv,Did not land.
+251,2020-08-19,VN571.csv,Did not land.
+252,2020-08-20,GM501.csv,Did not land.
+253,2020-08-22,VN5311.csv,Did not land at TSN.
+254,2020-08-23,FX5194.csv,Did not land.
+255,2020-08-26,GM501.csv,Did not land.
+256,2020-08-28,BL555.csv,Did not land.
+257,2020-08-28,BL777.csv,Did not land.
+258,2020-08-28,CX799.csv,Did not land.
+259,2020-08-28,EK393.csv,Did not land.
+260,2020-08-28,NH891.csv,Did not land.
+261,2020-08-28,VJ167.csv,Did not land.
+262,2020-08-28,VJ225.csv,Did not land.
+263,2020-08-28,VJ379.csv,Did not land.
+264,2020-08-28,VN1187.csv,Did not land.
+265,2020-08-28,VN1279.csv,Did not land.
+266,2020-08-28,VN1397.csv,Did not land.
+267,2020-08-28,VN1427.csv,Did not land.
+268,2020-08-28,VN217.csv,Did not land at TSN.
+269,2020-08-28,VN269.csv,Did not land.
+270,2020-08-30,BL571.csv,Did not land.
+271,2020-08-30,BL773.csv,Did not land.
+272,2020-08-30,CX799.csv,Did not land.
+273,2020-08-30,FX5194.csv,Did not land.
+274,2020-08-30,NH891.csv,Did not land.
+275,2020-08-30,VJ167.csv,Did not land.
+276,2020-08-30,VJ379.csv,Did not land.
+277,2020-08-30,VN1187.csv,Did not land.
+278,2020-08-30,VN1267.csv,Did not land.
+279,2020-08-30,VN1279.csv,Did not land.
+280,2020-08-30,VN1397.csv,Did not land.
+281,2020-08-30,VN215.csv,Did not land.
+282,2020-08-30,VN217.csv,Did not land.
+283,2020-09-02,K6816.csv,Did not land.
+284,2020-09-06,FX5194.csv,Did not land.
+285,2020-09-06,VJ141.csv,Did not land.
+286,2020-09-06,VJ379.csv,Did not land.
+287,2020-09-08,QH1155.csv,Did not land.
+288,2020-09-08,VJ153.csv,Did not land.
+289,2020-09-08,VJ691.csv,Did not land.
+290,2020-09-08,VN1263.csv,Did not land.
+291,2020-09-08,VN8054.csv,Did not land.
+292,2020-09-09,CI783.csv,Did not land.
+293,2020-09-09,CX799.csv,Did not land.
+294,2020-09-09,VJ165.csv,Did not land.
+295,2020-09-09,VJ271.csv,Did not land.
+296,2020-09-09,VJ326.csv,Did not land.
+297,2020-09-09,VN1373.csv,Did not land.
+298,2020-09-09,VN1826.csv,Did not land.
+299,2020-09-09,VN215.csv,Did not land.
+300,2020-09-09,VN269.csv,Did not land at TSN.
+301,2020-09-09,VN6007.csv,Did not land.
+302,2020-09-09,VN8078.csv,Did not land.
+303,2020-09-13,FX5194.csv,Did not land.
+304,2020-09-13,KE8351.csv,Did not land.
+305,2020-09-13,OZ3951.csv,Did not land.
+306,2020-09-13,VN1279.csv,Did not land.
+307,2020-09-14,VJ189.csv,Did not land.
+308,2020-09-14,VJ307.csv,Did not land.
+309,2020-09-14,VJ326.csv,Did not land.
+310,2020-09-14,VJ379.csv,Did not land.
+311,2020-09-14,VJ645.csv,Did not land.
+312,2020-09-14,VN1267.csv,Did not land at TSN.
+313,2020-09-14,VN1401.csv,Did not land.
+314,2020-09-14,VN1427.csv,Did not land.
+315,2020-09-14,VN6514.csv,Did not land.
+316,2020-09-14,VN7397.csv,Did not land.
+317,2020-09-16,KE8351.csv,Did not land.
+318,2020-09-20,5X146.csv,Did not land.
+319,2020-09-20,FX5194.csv,Did not land.
+320,2020-09-20,KE8351.csv,Did not land.
+321,2020-09-22,QH157.csv,Did not land.
+322,2020-09-22,VN209.csv,Did not land.
+323,2020-09-24,2Y8816.csv,Did not land.
+324,2020-09-24,KE683.csv,Did not land.
+325,2020-09-24,OZ735.csv,Did not land.
+326,2020-09-24,QH151.csv,Did not land.
+327,2020-09-24,QH1545.csv,Did not land.
+328,2020-09-24,QH205.csv,Did not land.
+329,2020-09-24,VJ151.csv,Did not land.
+330,2020-09-24,VJ281.csv,Did not land.
+331,2020-09-24,VN221.csv,Did not land.
+332,2020-09-24,VN283.csv,Did not land.
+333,2020-09-24,VN5731.csv,Did not land.
+334,2020-09-27,5X146.csv,Did not land.
+335,2020-09-27,CA609.csv,Did not land.
+336,2020-09-27,EY975.csv,Did not land.
+337,2020-09-27,FX5194.csv,Did not land.
+338,2020-09-27,KE8351.csv,Did not land.
+339,2020-09-27,QH207.csv,Did not land.
+340,2020-09-27,QR970.csv,Did not land.
+341,2020-09-27,VJ151.csv,Did not land.
+342,2020-09-27,VJ215.csv,Did not land.
+343,2020-09-27,VJ283.csv,Did not land.
+344,2020-09-27,VN7211.csv,Did not land.
+345,2020-09-27,VN7229.csv,Did not land.
+346,2020-09-28,NH833.csv,Did not land.
+347,2020-09-28,QH1175.csv,Did not land.
+348,2020-09-28,VJ133.csv,Did not land.
+349,2020-09-28,VJ197.csv,Did not land.
+350,2020-09-28,VJ247.csv,Did not land.
+351,2020-09-28,VJ271.csv,Did not land.
+352,2020-09-28,VN1181.csv,Did not land.
+353,2020-09-28,VN1395.csv,Did not land.
+354,2020-09-28,VN1822.csv,Did not land.
+355,2020-09-28,VN1830.csv,Did not land.
+356,2020-09-28,VN6221.csv,Did not land.
+357,2020-09-28,VN6251.csv,Did not land.
+358,2020-09-28,VN6516.csv,Did not land.
+359,2020-09-28,VN7379.csv,Did not land.
+360,2020-09-28,VN8062.csv,Did not land.
+361,2020-09-28,VN8066.csv,Did not land.
+362,2020-09-28,ZH8011.csv,Did not land.
+363,2020-09-29,NH833.csv,Did not land.
+364,2020-09-29,VJ251.csv,Did not land.
+365,2020-09-29,VN1181.csv,Did not land.
+366,2020-10-01,VN1279.csv,Did not land at TSN.
+367,2020-10-03,QH8283.csv,Did not land.
+368,2020-10-03,TK6470.csv,Did not land.
+369,2020-10-03,VJ141.csv,Did not land.
+370,2020-10-03,VN263.csv,Did not land.
+371,2020-10-03,VN8056.csv,Did not land.
+372,2020-10-04,5X146.csv,Did not land at TSN.
+373,2020-10-04,FX5194.csv,Did not land at TSN.
+374,2020-10-05,KE8681.csv,Did not land.
+375,2020-10-05,PR591.csv,Did not land.
+376,2020-10-05,VJ275.csv,Did not land.
+377,2020-10-05,VJ631.csv,Did not land.
+378,2020-10-05,VN772.csv,Did not land.
+379,2020-10-07,VJ303.csv,Did not land.
+380,2020-10-07,VN1373.csv,Did not land.
+381,2020-10-08,LD561.csv,Did not land.
+382,2020-10-08,OZ395.csv,Did not land.
+383,2020-10-08,VN5563.csv,Did not land.
+384,2020-10-08,VN8072.csv,Did not land.
+385,2020-10-11,5X146.csv,Did not land.
+386,2020-10-11,FX5194.csv,Did not land at TSN.
+387,2020-10-11,VN1866.csv,Did not land.
+388,2020-10-11,VN213.csv,Did not land.
+389,2020-10-12,BL110.csv,Did not land at TSN.
+390,2020-10-12,BL116.csv,Did not land at TSN.
+391,2020-10-14,CX799.csv,Did not land.
+392,2020-10-14,VJ137.csv,Did not land.
+393,2020-10-14,VJ139.csv,Did not land at TSN.
+394,2020-10-14,VJ141.csv,Did not land.
+395,2020-10-14,VJ159.csv,Did not land at TSN.
+396,2020-10-14,VJ165.csv,Did not land.
+397,2020-10-14,VJ271.csv,Did not land.
+398,2020-10-14,VJ379.csv,Did not land.
+399,2020-10-14,VJ383.csv,Did not land.
+400,2020-10-14,VN1185.csv,Did not land.
+401,2020-10-14,VN133.csv,Did not land.
+402,2020-10-14,VN215.csv,Did not land.
+403,2020-10-14,VN263.csv,Did not land.
+404,2020-10-14,VN6007.csv,Did not land.
+405,2020-10-14,VN6017.csv,Did not land.
+406,2020-10-14,VN8074.csv,Did not land.
+407,2020-10-15,VJ689.csv,Did not land.
+408,2020-10-16,VN7387.csv,Did not land.
+409,2020-10-17,VN1826.csv,Did not land.
+410,2020-10-17,VN6251.csv,Did not land at TSN.
+411,2020-10-17,VN6514.csv,Did not land at TSN.
+412,2020-10-18,5X146.csv,Did not land.
+413,2020-10-18,FX5194.csv,Did not land at TSN.
+414,2020-10-19,VN5571.csv,Did not land.
+415,2020-10-19,VN571.csv,Did not land.
+416,2020-10-21,VN1185.csv,Did not land.
+417,2020-10-21,VN1265.csv,Did not land.
+418,2020-10-21,VN405.csv,Did not land at TSN.
+419,2020-10-21,VN409.csv,Did not land at TSN.
+420,2020-10-24,QH8283.csv,Did not land.
+421,2020-10-25,5X146.csv,Did not land.
+422,2020-10-25,FX5194.csv,Did not land at TSN.
+423,2020-10-29,VJ363.csv,Did not land at TSN.
+424,2020-10-31,FX5194.csv,Did not land.
+425,2020-10-31,VJ271.csv,Did not land.
+426,2020-10-31,VJ326.csv,Did not land at TSN.
+427,2020-10-31,VN6433.csv,Did not land at TSN.
+428,2020-11-01,5X146.csv,Did not land.
+429,2020-11-01,VJ281.csv,Did not land.
+430,2020-11-02,YG9046.csv,Did not land at TSN.
+431,2020-11-03,LD561.csv,Did not land.
+432,2020-11-03,VJ6131.csv,Did not land.
+433,2020-11-03,VN674.csv,Did not land at TSN.
+434,2020-11-07,VN5032.csv,Did not land at TSN.
+435,2020-11-07,YG9046.csv,Did not land.
+436,2020-11-08,5X146.csv,Did not land.
+437,2020-11-08,FX5194.csv,Did not land at TSN.
+438,2020-11-08,TK6470.csv,Did not land.
+439,2020-11-09,YG9046.csv,Did not land at TSN.
+440,2020-11-10,5X146.csv,Did not land.
+441,2020-11-10,VN5780.csv,Did not land at TSN.
+442,2020-11-12,VJ271.csv,Did not land.
+443,2020-11-13,GM501.csv,Did not land.
+444,2020-11-13,VJ275.csv,Did not land.
+445,2020-11-15,5X146.csv,Did not land.
+446,2020-11-15,FX5194.csv,Did not land.
+447,2020-11-15,YG9046.csv,Did not land.
+448,2020-11-16,VN6055.csv,Did not land.
+449,2020-11-17,TW1121.csv,Did not land.
+450,2020-11-17,VJ273.csv,Did not land.
+451,2020-11-18,GM501.csv,Did not land.
+452,2020-11-18,VJ287.csv,Did not land.
+453,2020-11-19,6E8504.csv,Did not land.
+454,2020-11-19,CI783.csv,Did not land.
+455,2020-11-19,CX799.csv,Did not land.
+456,2020-11-19,QH1547.csv,Did not land.
+457,2020-11-19,VJ189.csv,Did not land.
+458,2020-11-19,VJ221.csv,Did not land.
+459,2020-11-19,VJ249.csv,Did not land.
+460,2020-11-19,VJ271.csv,Did not land.
+461,2020-11-19,VJ279.csv,Did not land.
+462,2020-11-19,VJ637.csv,Did not land.
+463,2020-11-19,VN1265.csv,Did not land.
+464,2020-11-19,VN131.csv,Did not land.
+465,2020-11-19,VN1345.csv,Did not land.
+466,2020-11-19,VN1828.csv,Did not land.
+467,2020-11-19,VN215.csv,Did not land.
+468,2020-11-19,VN6015.csv,Did not land.
+469,2020-11-19,VN6233.csv,Did not land.
+470,2020-11-19,VN6433.csv,Did not land.
+471,2020-11-19,VN7341.csv,Did not land.
+472,2020-11-19,VN772.csv,Did not land.
+473,2020-11-19,VN8078.csv,Did not land.
+474,2020-11-20,5X146.csv,Did not land.
+475,2020-11-20,GM501.csv,Did not land.
+476,2020-11-20,VJ387.csv,Did not land.
+477,2020-11-20,VN8056.csv,Did not land.
+478,2020-11-22,3S620.csv,Did not land at TSN.
+479,2020-11-22,5X146.csv,Did not land.
+480,2020-11-22,FX5194.csv,Did not land at TSN.
+481,2020-11-22,VJ287.csv,Did not land.
+482,2020-11-22,VN8066.csv,Did not land.
+483,2020-11-22,YG9046.csv,Did not land.
+484,2020-11-23,YG9046.csv,Did not land.
+485,2020-11-24,CZ8175.csv,Did not land at TSN.
+486,2020-11-25,VJ273.csv,Did not land.
+487,2020-11-27,VJ281.csv,Did not land.
+488,2020-11-29,5X146.csv,Did not land at TSN.
+489,2020-11-29,FX5194.csv,Did not land at TSN.
+490,2020-11-29,OZ395.csv,Did not land.
+491,2020-11-29,VN7215.csv,Did not land.
+492,2020-11-29,YG9046.csv,Did not land.
+493,2020-12-01,RH319.csv,Did not land.
+494,2020-12-01,VN6007.csv,Did not land at TSN.
+495,2020-12-02,5X146.csv,Did not land.
+496,2020-12-02,LD561.csv,Did not land.
+497,2020-12-03,6E8504.csv,Did not land.
+498,2020-12-03,FX5194.csv,Did not land.
+499,2020-12-03,VJ181.csv,Did not land.
+500,2020-12-03,VJ6131.csv,Did not land.
+501,2020-12-03,VN5563.csv,Did not land.
+502,2020-12-03,VN595.csv,Did not land.
+503,2020-12-04,2Y7713.csv,Did not land at TSN.
+504,2020-12-04,VJ273.csv,Did not land.
+505,2020-12-05,OZ395.csv,Did not land.
+506,2020-12-05,VN6435.csv,Did not land.
+507,2020-12-06,5X146.csv,Did not land.
+508,2020-12-06,FX5194.csv,Did not land at TSN.
+509,2020-12-06,YG9046.csv,Did not land.
+510,2020-12-07,BL110.csv,Did not land at TSN.
+511,2020-12-07,BL116.csv,Did not land at TSN.
+512,2020-12-07,YG9046.csv,Did not land.
+513,2020-12-08,3K555.csv,Did not land.
+514,2020-12-08,VHPFL.csv,Did not land.
+515,2020-12-08,VJ175.csv,Did not land.
+516,2020-12-08,VJ6131.csv,Did not land.
+517,2020-12-08,VN780.csv,Did not land.
+518,2020-12-08,VN8002.csv,Did not land.
+519,2020-12-08,VN88.csv,Did not land.
+520,2020-12-09,RU248.csv,Did not land at TSN.
+521,2020-12-09,VN301.csv,Did not land.
+522,2020-12-09,VN8066.csv,Did not land.
+523,2020-12-10,KE681.csv,Did not land.
+524,2020-12-10,QH207.csv,Did not land.
+525,2020-12-10,VJ275.csv,Did not land.
+526,2020-12-10,VJ379.csv,Did not land.
+527,2020-12-10,VN1271.csv,Did not land.
+528,2020-12-10,VN211.csv,Did not land.
+529,2020-12-10,VN251.csv,Did not land.
+530,2020-12-10,VN301.csv,Did not land.
+531,2020-12-10,VN321.csv,Did not land.
+532,2020-12-10,VN6011.csv,Did not land.
+533,2020-12-10,VN6221.csv,Did not land.
+534,2020-12-10,VN7217.csv,Did not land.
+535,2020-12-11,OZ7353.csv,Did not land.
+536,2020-12-12,FX5194.csv,Did not land.
+537,2020-12-13,5X146.csv,Did not land.
+538,2020-12-13,FX5194.csv,Did not land at TSN.
+539,2020-12-13,YG9046.csv,Did not land.
+540,2020-12-14,VHPFL.csv,Did not land.
+541,2020-12-14,YG9046.csv,Did not land.
+542,2020-12-15,GM501.csv,Did not land.
+543,2020-12-16,NH833.csv,Did not land.
+544,2020-12-17,TK6470.csv,Did not land.
+545,2020-12-17,VHPFL.csv,Did not land.
+546,2020-12-18,GM501.csv,Did not land.
+547,2020-12-19,GM501.csv,Did not land.
+548,2020-12-19,SG702.csv,Did not land at TSN.
+549,2020-12-19,VN8066.csv,Did not land.
+550,2020-12-19,VN8078.csv,Did not land.
+551,2020-12-20,5X146.csv,Did not land.
+552,2020-12-20,FX5194.csv,Did not land at TSN.
+553,2020-12-20,YG9046.csv,Did not land.
+554,2020-12-21,YG9046.csv,Did not land.
+555,2020-12-22,VHPFL.csv,Did not land at TSN.
+556,2020-12-22,VN50.csv,Did not land at TSN.
+557,2020-12-23,VHPFL.csv,Did not land.
+558,2020-12-24,CZ8175.csv,Did not land at TSN.
+559,2020-12-24,TK6470.csv,Did not land.
+560,2020-12-24,VHPFL.csv,Did not land.
+561,2020-12-24,VN8056.csv,Did not land.
+562,2020-12-24,VN8072.csv,Did not land.
+563,2020-12-26,VJ627.csv,Did not land.
+564,2020-12-26,VN7223.csv,Did not land.
+565,2020-12-26,VPCVT.csv,Did not land at TSN.
+566,2020-12-27,5X146.csv,Did not land.
+567,2020-12-27,FX5194.csv,Did not land at TSN.
+568,2020-12-27,KE351.csv,Did not land.
+569,2020-12-27,YG9046.csv,Did not land.
+570,2020-12-28,VHPFL.csv,Did not land at TSN.
+571,2020-12-28,VPCTV.csv,Did not land at TSN.
+572,2020-12-31,RL9934.csv,Did not land.
+573,2021-01-03,5X146.csv,Did not land.
+574,2021-01-03,BR391.csv,Did not land.
+575,2021-01-03,FX5194.csv,Did not land at TSN.
+576,2021-01-03,OZ395.csv,Did not land.
+577,2021-01-04,VHPFL.csv,Did not land at TSN.
+578,2021-01-05,3S690.csv,Did not land at TSN.
+579,2021-01-05,NH833.csv,Did not land.
+580,2021-01-05,VHPFL.csv,Did not land at TSN.
+581,2021-01-05,VNA299.csv,Did not land at TSN.
+582,2021-01-06,OZ735.csv,Did not land.
+583,2021-01-06,VHPFL.csv,Did not land.
+584,2021-01-08,CZ8385.csv,Did not land at TSN.
+585,2021-01-08,OZ7353.csv,Did not land.
+586,2021-01-09,3K555.csv,Did not land.
+587,2021-01-09,BR395.csv,Did not land.
+588,2021-01-09,CI781.csv,Did not land.
+589,2021-01-09,PR591.csv,Did not land.
+590,2021-01-09,QH203.csv,Did not land at TSN.
+591,2021-01-09,QH209.csv,Did not land.
+592,2021-01-09,VJ127.csv,Did not land.
+593,2021-01-09,VJ175.csv,Did not land.
+594,2021-01-09,VJ6131.csv,Did not land.
+595,2021-01-09,VN245.csv,Did not land.
+596,2021-01-09,VN780.csv,Did not land.
+597,2021-01-10,5X146.csv,Did not land.
+598,2021-01-10,FX5194.csv,Did not land at TSN.
+599,2021-01-10,VJ151.csv,Did not land at TSN.
+600,2021-01-10,VN8050.csv,Did not land.
+601,2021-01-11,VHPFL.csv,Did not land at TSN.
+602,2021-01-12,CZ8175.csv,Did not land at TSN.
+603,2021-01-12,VHPFL.csv,Did not land at TSN.
+604,2021-01-13,CI783.csv,Did not land.
+605,2021-01-13,KE351.csv,Did not land.
+606,2021-01-13,QH1522.csv,Did not land.
+607,2021-01-13,TR302.csv,Did not land.
+608,2021-01-13,VHPFL.csv,Did not land at TSN.
+609,2021-01-13,VJ167.csv,Did not land.
+610,2021-01-13,VJ189.csv,Did not land.
+611,2021-01-13,VJ221.csv,Did not land.
+612,2021-01-13,VJ249.csv,Did not land.
+613,2021-01-13,VN1401.csv,Did not land.
+614,2021-01-13,VN1828.csv,Did not land.
+615,2021-01-13,VN215.csv,Did not land.
+616,2021-01-13,VN6043.csv,Did not land.
+617,2021-01-13,VN8060.csv,Did not land.
+618,2021-01-14,CZ8175.csv,Did not land at TSN.
+619,2021-01-14,CZ8385.csv,Did not land at TSN.
+620,2021-01-14,NH833.csv,Did not land.
+621,2021-01-14,PR591.csv,Did not land.
+622,2021-01-14,QH209.csv,Did not land.
+623,2021-01-14,VJ127.csv,Did not land.
+624,2021-01-14,VJ175.csv,Did not land.
+625,2021-01-14,VJ6131.csv,Did not land.
+626,2021-01-14,VN8082.csv,Did not land.
+627,2021-01-15,NH833.csv,Did not land.
+628,2021-01-15,VPCTV.csv,Did not land.
+629,2021-01-16,3K555.csv,Did not land.
+630,2021-01-16,CZ8175.csv,Did not land.
+631,2021-01-16,FX5194.csv,Did not land at TSN.
+632,2021-01-16,OZ395.csv,Did not land.
+633,2021-01-16,PR591.csv,Did not land.
+634,2021-01-16,QH209.csv,Did not land.
+635,2021-01-16,RL9934.csv,Did not land.
+636,2021-01-16,VJ127.csv,Did not land.
+637,2021-01-16,VJ175.csv,Did not land.
+638,2021-01-16,VJ6131.csv,Did not land.
+639,2021-01-16,VN245.csv,Did not land.
+640,2021-01-16,VN780.csv,Did not land.
+641,2021-01-17,5X146.csv,Did not land.
+642,2021-01-20,VN1383.csv,Did not land.
+643,2021-01-21,ZF2074.csv,Did not land at TSN.
+644,2021-01-22,CZ8175.csv,Did not land at TSN.
+645,2021-01-23,CI783.csv,Did not land.
+646,2021-01-23,QH241.csv,Did not land.
+647,2021-01-23,TR302.csv,Did not land.
+648,2021-01-23,VJ139.csv,Did not land.
+649,2021-01-23,VJ189.csv,Did not land.
+650,2021-01-23,VJ311.csv,Did not land.
+651,2021-01-23,VN1265.csv,Did not land.
+652,2021-01-23,VN1826.csv,Did not land.
+653,2021-01-23,VN1832.csv,Did not land.
+654,2021-01-23,VN215.csv,Did not land.
+655,2021-01-23,VN263.csv,Did not land.
+656,2021-01-23,VN6251.csv,Did not land.
+657,2021-01-24,5X146.csv,Did not land.
+658,2021-01-24,FX5194.csv,Did not land at TSN.
+659,2021-01-24,OZ395.csv,Did not land.
+660,2021-01-25,BL110.csv,Did not land at TSN.
+661,2021-01-25,BL116.csv,Did not land at TSN.
+662,2021-01-25,CZ8175.csv,Did not land.
+663,2021-01-25,VJ199.csv,Did not land.
+664,2021-01-26,CZ8175.csv,Did not land at TSN.
+665,2021-01-26,VNA299.csv,Did not land at TSN.
+666,2021-01-27,CZ8175.csv,Did not land at TSN.
+667,2021-01-27,KE351.csv,Did not land.
+668,2021-01-27,NH833.csv,Did not land.
+669,2021-01-27,VN772.csv,Did not land at TSN.
+670,2021-01-28,CZ8175.csv,Did not land at TSN.
+671,2021-01-28,VN30.csv,Did not land.
+672,2021-01-28,VNA299.csv,Did not land at TSN.
+673,2021-01-29,NH833.csv,Did not land.
+674,2021-01-30,OZ3951.csv,Did not land.
+675,2021-01-30,TK6470.csv,Did not land.
+676,2021-01-30,VPCTV.csv,Did not land.
+677,2021-01-31,5X146.csv,Did not land at TSN.
+678,2021-01-31,CI6651.csv,Did not land.
+679,2021-01-31,FX5194.csv,Did not land at TSN.
+680,2021-02-01,NH833.csv,Did not land.
+681,2021-02-02,KE683.csv,Did not land.
+682,2021-02-03,CZ8175.csv,Did not land at TSN.
+683,2021-02-04,NH833.csv,Did not land.
+684,2021-02-05,OZ7353.csv,Did not land.
+685,2021-02-05,VPCVT.csv,Did not land.
+686,2021-02-06,VJ365.csv,Did not land.
+687,2021-02-07,5X146.csv,Did not land.
+688,2021-02-07,AF258.csv,Did not land at TSN.
+689,2021-02-07,CZ8175.csv,Did not land at TSN.
+690,2021-02-07,FX5194.csv,Did not land at TSN.
+691,2021-02-07,OZ395.csv,Did not land.
+692,2021-02-08,VJ647.csv,Did not land at TSN.
+693,2021-02-08,VN8002.csv,Did not land.
+694,2021-02-09,NH833.csv,Did not land.
+695,2021-02-10,5X146.csv,Did not land.
+696,2021-02-10,CI783.csv,Did not land.
+697,2021-02-10,CX799.csv,Did not land.
+698,2021-02-10,QH1522.csv,Did not land.
+699,2021-02-10,TR302.csv,Did not land.
+700,2021-02-10,VJ167.csv,Did not land.
+701,2021-02-10,VJ189.csv,Did not land.
+702,2021-02-10,VJ221.csv,Did not land.
+703,2021-02-10,VJ249.csv,Did not land.
+704,2021-02-10,VJ271.csv,Did not land.
+705,2021-02-10,VN1265.csv,Did not land.
+706,2021-02-10,VN1401.csv,Did not land.
+707,2021-02-10,VN1828.csv,Did not land at TSN.
+708,2021-02-10,VN215.csv,Did not land.
+709,2021-02-10,VN6261.csv,Did not land.
+710,2021-02-10,VN6583.csv,Did not land.
+711,2021-02-10,VN7407.csv,Did not land.
+712,2021-02-10,VN7465.csv,Did not land.
+713,2021-02-10,VN7997.csv,Did not land.
+714,2021-02-10,VN8060.csv,Did not land.
+715,2021-02-12,CV7324.csv,Did not land at TSN.
+716,2021-02-12,CZ8175.csv,Did not land.
+717,2021-02-12,EK392.csv,Did not land.
+718,2021-02-12,QH1173.csv,Did not land.
+719,2021-02-12,VJ209.csv,Did not land.
+720,2021-02-12,VJ245.csv,Did not land.
+721,2021-02-12,VN1417.csv,Did not land.
+722,2021-02-12,VN6027.csv,Did not land.
+723,2021-02-12,VN7467.csv,Did not land.
+724,2021-02-13,CZ8175.csv,Did not land.
+725,2021-02-13,LD561.csv,Did not land.
+726,2021-02-13,VN7836.csv,Did not land at TSN.
+727,2021-02-14,CZ8175.csv,Did not land.
+728,2021-02-14,FX5194.csv,Did not land at TSN.
+729,2021-02-14,QH209.csv,Did not land.
+730,2021-02-14,VJ127.csv,Did not land.
+731,2021-02-14,VJ175.csv,Did not land.
+732,2021-02-14,VJ279.csv,Did not land.
+733,2021-02-16,CX799.csv,Did not land.
+734,2021-02-16,LD561.csv,Did not land at TSN.
+735,2021-02-16,QH1187.csv,Did not land.
+736,2021-02-16,QH1522.csv,Did not land.
+737,2021-02-16,QH203.csv,Did not land.
+738,2021-02-16,TR302.csv,Did not land.
+739,2021-02-16,VJ163.csv,Did not land.
+740,2021-02-16,VJ189.csv,Did not land.
+741,2021-02-16,VJ207.csv,Did not land.
+742,2021-02-16,VJ221.csv,Did not land.
+743,2021-02-16,VJ235.csv,Did not land.
+744,2021-02-16,VJ249.csv,Did not land.
+745,2021-02-16,VJ271.csv,Did not land.
+746,2021-02-16,VJ293.csv,Did not land.
+747,2021-02-16,VJ371.csv,Did not land.
+748,2021-02-16,VJ385.csv,Did not land.
+749,2021-02-16,VJ627.csv,Did not land.
+750,2021-02-16,VJ633.csv,Did not land.
+751,2021-02-16,VJ637.csv,Did not land.
+752,2021-02-16,VJ643.csv,Did not land.
+753,2021-02-16,VN1265.csv,Did not land.
+754,2021-02-16,VN1401.csv,Did not land.
+755,2021-02-16,VN263.csv,Did not land.
+756,2021-02-16,VN6433.csv,Did not land.
+757,2021-02-16,VN6583.csv,Did not land.
+758,2021-02-16,VN7007.csv,Did not land.
+759,2021-02-16,VN7131.csv,Did not land.
+760,2021-02-16,VN7253.csv,Did not land.
+761,2021-02-16,VN7261.csv,Did not land.
+762,2021-02-16,VN7425.csv,Did not land.
+763,2021-02-16,VN8050.csv,Did not land.
+764,2021-02-16,VN8060.csv,Did not land.
+765,2021-02-17,LD561.csv,Did not land.
+766,2021-02-17,QH1563.csv,Did not land.
+767,2021-02-17,VJ105.csv,Did not land.
+768,2021-02-17,VN1822.csv,Did not land.
+769,2021-02-19,VN7989.csv,Did not land.
+770,2021-02-21,5X146.csv,Did not land.
+771,2021-02-21,CZ8175.csv,Did not land at TSN.
+772,2021-02-21,FX5194.csv,Did not land at TSN.
+773,2021-02-23,CZ8175.csv,Did not land at TSN.
+774,2021-02-25,CZ8035.csv,Did not land.
+775,2021-02-25,CZ8175.csv,Did not land.
+776,2021-02-28,5X146.csv,Did not land.
+777,2021-02-28,FX5194.csv,Did not land at TSN.
+778,2021-03-04,CZ8175.csv,Did not land at TSN.
+779,2021-03-04,RH328.csv,Did not land at TSN.
+780,2021-03-05,CZ8175.csv,Did not land at TSN.
+781,2021-03-05,VJ241.csv,Did not land.
+782,2021-03-05,VN1886.csv,Did not land.
+783,2021-03-05,VN8054.csv,Did not land.
+784,2021-03-06,CZ8175.csv,Did not land at TSN.
+785,2021-03-07,5X146.csv,Did not land.
+786,2021-03-07,FX5194.csv,Did not land.
+787,2021-03-07,QV1.csv,Did not land at TSN.
+788,2021-03-07,TK6470.csv,Did not land.
+789,2021-03-08,QH1175.csv,Did not land.
+790,2021-03-08,QH207.csv,Did not land.
+791,2021-03-08,VJ121.csv,Did not land.
+792,2021-03-08,VJ137.csv,Did not land.
+793,2021-03-08,VJ141.csv,Did not land at TSN.
+794,2021-03-08,VJ161.csv,Did not land.
+795,2021-03-08,VJ277.csv,Did not land.
+796,2021-03-08,VJ309.csv,Did not land.
+797,2021-03-08,VJ373.csv,Did not land.
+798,2021-03-08,VN1181.csv,Did not land.
+799,2021-03-08,VN1261.csv,Did not land.
+800,2021-03-08,VN211.csv,Did not land.
+801,2021-03-08,VN257.csv,Did not land.
+802,2021-03-08,VN8058.csv,Did not land.
+803,2021-03-08,VN8062.csv,Did not land.
+804,2021-03-09,CZ8175.csv,Did not land at TSN.
+805,2021-03-09,VJ175.csv,Did not land.
+806,2021-03-09,VN405.csv,Did not land.
+807,2021-03-09,VU751.csv,Did not land.
+808,2021-03-10,CZ8175.csv,Did not land at TSN.
+809,2021-03-10,VJ241.csv,Did not land.
+810,2021-03-10,VJ322.csv,Did not land.
+811,2021-03-10,VJ389.csv,Did not land.
+812,2021-03-10,VN6431.csv,Did not land.
+813,2021-03-10,VU673.csv,Did not land.
+814,2021-03-11,CZ8175.csv,Did not land at TSN.
+815,2021-03-12,QH1155.csv,Did not land.
+816,2021-03-12,QH1173.csv,Did not land.
+817,2021-03-12,QH207.csv,Did not land.
+818,2021-03-12,QH215.csv,Did not land.
+819,2021-03-12,VJ167.csv,Did not land.
+820,2021-03-12,VJ221.csv,Did not land.
+821,2021-03-12,VJ243.csv,Did not land.
+822,2021-03-12,VJ245.csv,Did not land.
+823,2021-03-12,VJ249.csv,Did not land.
+824,2021-03-12,VJ2849.csv,Did not land at TSN.
+825,2021-03-12,VJ377.csv,Did not land.
+826,2021-03-12,VJ8519.csv,Did not land at TSN.
+827,2021-03-12,VN127.csv,Did not land.
+828,2021-03-12,VN1375.csv,Did not land.
+829,2021-03-12,VN1383.csv,Did not land.
+830,2021-03-12,VN211.csv,Did not land.
+831,2021-03-12,VN213.csv,Did not land.
+832,2021-03-12,VN275.csv,Did not land.
+833,2021-03-12,VN6015.csv,Did not land.
+834,2021-03-12,VN6283.csv,Did not land.
+835,2021-03-12,VN7249.csv,Did not land.
+836,2021-03-12,VN8072.csv,Did not land.
+837,2021-03-12,VN8092.csv,Did not land.
+838,2021-03-12,VZ3970.csv,Did not land.
+839,2021-03-12,VZ3974.csv,Did not land.
+840,2021-03-12,ZH8011.csv,Did not land.
+841,2021-03-14,5X146.csv,Did not land.
+842,2021-03-14,AF258.csv,Did not land.
+843,2021-03-14,CZ8175.csv,Did not land at TSN.
+844,2021-03-14,FX5194.csv,Did not land at TSN.
+845,2021-03-15,VN1261.csv,Did not land.
+846,2021-03-18,VN595.csv,Did not land.
+847,2021-03-21,5X146.csv,Did not land.
+848,2021-03-21,FX5194.csv,Did not land at TSN.
+849,2021-03-21,QH1321.csv,Did not land.
+850,2021-03-21,VJ605.csv,Did not land.
+851,2021-03-23,VJ377.csv,Did not land.
+852,2021-03-24,AK524.csv,Did not land.
+853,2021-03-24,RH319.csv,Did not land at TSN.
+854,2021-03-25,VN5571.csv,Did not land.
+855,2021-03-26,VN301.csv,Did not land.
+856,2021-03-28,5X146.csv,Did not land.
+857,2021-03-28,FX5194.csv,Did not land at TSN.
+858,2021-03-29,VJ135.csv,Did not land.
+859,2021-03-29,VN5563.csv,Did not land.
+860,2021-04-01,BR391.csv,Did not land.
+861,2021-04-01,BR395.csv,Did not land.
+862,2021-04-01,CI781.csv,Did not land.
+863,2021-04-01,QH151.csv,Did not land.
+864,2021-04-01,QH203.csv,Did not land.
+865,2021-04-01,VJ129.csv,Did not land.
+866,2021-04-01,VJ153.csv,Did not land at TSN.
+867,2021-04-01,VJ273.csv,Did not land.
+868,2021-04-01,VJ371.csv,Did not land.
+869,2021-04-01,VJ647.csv,Did not land.
+870,2021-04-01,VN243.csv,Did not land.
+871,2021-04-01,VN6009.csv,Did not land.
+872,2021-04-01,VN6510.csv,Did not land.
+873,2021-04-02,VJ151.csv,Did not land at TSN.
+874,2021-04-02,VJ179.csv,Did not land at TSN.
+875,2021-04-02,VJ215.csv,Did not land at TSN.
+876,2021-04-02,VN6023.csv,Did not land at TSN.
+877,2021-04-02,VN6057.csv,Did not land at TSN.
+878,2021-04-02,VN6221.csv,Did not land at TSN.
+879,2021-04-03,FX5194.csv,Did not land at TSN.
+880,2021-04-04,5X146.csv,Did not land.
+881,2021-04-04,VN10.csv,Did not land.
+882,2021-04-05,VJ135.csv,Did not land.
+883,2021-04-09,LD561.csv,Did not land at TSN.
+884,2021-04-09,VN8062.csv,Did not land.
+885,2021-04-10,FX5194.csv,Did not land at TSN.
+886,2021-04-10,VJ367.csv,Did not land.
+887,2021-04-10,VN1894.csv,Did not land.
+888,2021-04-11,5X146.csv,Did not land.
+889,2021-04-12,QH9451.csv,Did not land at TSN.
+890,2021-04-13,QH1155.csv,Did not land.
+891,2021-04-13,QH245.csv,Did not land.
+892,2021-04-13,TW1121.csv,Did not land.
+893,2021-04-13,VJ643.csv,Did not land.
+894,2021-04-13,VN7373.csv,Did not land.
+895,2021-04-13,VU787.csv,Did not land.
+896,2021-04-14,CX799.csv,Did not land.
+897,2021-04-14,QH1042.csv,Did not land.
+898,2021-04-14,QH1173.csv,Did not land.
+899,2021-04-14,QH1547.csv,Did not land.
+900,2021-04-14,VJ167.csv,Did not land.
+901,2021-04-14,VJ189.csv,Did not land.
+902,2021-04-14,VJ221.csv,Did not land.
+903,2021-04-14,VJ271.csv,Did not land.
+904,2021-04-14,VJ275.csv,Did not land.
+905,2021-04-14,VJ377.csv,Did not land.
+906,2021-04-14,VJ391.csv,Did not land.
+907,2021-04-14,VN1265.csv,Did not land.
+908,2021-04-14,VN1287.csv,Did not land.
+909,2021-04-14,VN129.csv,Did not land.
+910,2021-04-14,VN131.csv,Did not land.
+911,2021-04-14,VN133.csv,Did not land.
+912,2021-04-14,VN1417.csv,Did not land.
+913,2021-04-14,VN1884.csv,Did not land.
+914,2021-04-14,VN215.csv,Did not land.
+915,2021-04-14,VN269.csv,Did not land.
+916,2021-04-14,VN6015.csv,Did not land.
+917,2021-04-14,VN6241.csv,Did not land.
+918,2021-04-14,VN6516.csv,Did not land.
+919,2021-04-14,VN7211.csv,Did not land at TSN.
+920,2021-04-14,VN7273.csv,Did not land.
+921,2021-04-14,VN8068.csv,Did not land.
+922,2021-04-15,VJ155.csv,Did not land.
+923,2021-04-16,LD561.csv,Did not land at TSN.
+924,2021-04-16,VJ159.csv,Did not land at TSN.
+925,2021-04-17,FX5194.csv,Did not land at TSN.
+926,2021-04-18,5X146.csv,Did not land.
+927,2021-04-18,VJ135.csv,Did not land at TSN.
+928,2021-04-18,VJ159.csv,Did not land at TSN.
+929,2021-04-20,VJ159.csv,Did not land at TSN.
+930,2021-04-20,VJ2723.csv,Did not land.
+931,2021-04-20,VJ7837.csv,Did not land.
+932,2021-04-20,VN7255.csv,Did not land at TSN.
+933,2021-04-22,MH766.csv,Did not land.
+934,2021-04-22,QH241.csv,Did not land.
+935,2021-04-22,VJ332.csv,Did not land.
+936,2021-04-22,VN131.csv,Did not land.
+937,2021-04-22,VN1828.csv,Did not land.
+938,2021-04-22,VN1882.csv,Did not land.
+939,2021-04-22,VN6516.csv,Did not land.
+940,2021-04-22,VN8060.csv,Did not land.
+941,2021-04-23,LD561.csv,Did not land at TSN.
+942,2021-04-23,VJ261.csv,Did not land.
+943,2021-04-24,VJ135.csv,Did not land.
+944,2021-04-24,VJ2723.csv,Did not land.
+945,2021-04-24,VJ7837.csv,Did not land.
+946,2021-04-24,VN1.csv,Did not land at TSN.
+947,2021-04-25,5X146.csv,Did not land.
+948,2021-04-25,FX5194.csv,Did not land at TSN.
+949,2021-04-25,QH281.csv,Did not land at TSN.
+950,2021-04-25,QH9453.csv,Did not land at TSN.
+951,2021-04-25,VN7255.csv,Did not land at TSN.
+952,2021-04-26,KE681.csv,Did not land.
+953,2021-04-26,VJ141.csv,Did not land at TSN.
+954,2021-04-26,VJ147.csv,Did not land at TSN.
