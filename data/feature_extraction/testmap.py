@@ -6,6 +6,7 @@ f = open('tsn_arrival.json')
 tsn = json.load(f)
 
 for entry_waypoint in tsn['entry_waypoint']:
+
     lat = tsn['waypoint'][entry_waypoint][0]
     long = tsn['waypoint'][entry_waypoint][1]
 
