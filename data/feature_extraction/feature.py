@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     # Choosing starting and ending date
     start_date = date(2020, 5, 9)
-    end_date = date(2021, 6, 24)
+    end_date = date(2021, 4, 26)
     df = pd.DataFrame()
 
     for date in (start_date + timedelta(n) for n in range(int((end_date - start_date).days) + 1)):
