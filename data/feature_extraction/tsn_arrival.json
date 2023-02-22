@@ -120,10 +120,7 @@
         "LANHI1S" : ["LANHI", "TSN"],
         "MISAN1S" : ["MISAN", "TSN"],
         "SAPEN1S" : ["SAPEN", "TSN"],
-        "VTV1S" : ["VTV", "TSN"],
-
-        "SAPEN2H" : ["SAPEN", "TS498", "TS496", "NOKUM", "TS492", "LETRO", "VANLI", "TS488", "RUNSI", "TS458", "TS456", "TS454", "SOKAN"],
-        "BITIS2H" : ["BITIS", "NOKUM", "TS492", "LETRO", "VANLI", "TS488", "RUNSI", "TS458", "TS456", "TS454", "SOKAN"]
+        "VTV1S" : ["VTV", "TSN"]
     },
 
     "arrival_dict_v" : {
@@ -138,6 +135,8 @@
     "special_usage_condition":{
         "DALAP2G" : ["DALAP", "TS548", "TS546", "TS544", "ENROP", "TS542", "TS538", "TS536", "TS534", "SAMDU"],
         "VICAL3G" : ["VICAL", "TS538", "TS536", "TS534", "SAMDU"],
+        "SAPEN2H" : ["SAPEN", "TS498", "TS496", "NOKUM", "TS492", "LETRO", "VANLI", "TS488", "RUNSI", "TS458", "TS456", "TS454", "SOKAN"],
+        "BITIS2H" : ["BITIS", "NOKUM", "TS492", "LETRO", "VANLI", "TS488", "RUNSI", "TS458", "TS456", "TS454", "SOKAN"],
 
         "ELSAS2H" : ["ELSAS", "GOMIN", "RUNSI", "TS458", "TS456", "TS454", "SOKAN"],
 
@@ -169,5 +168,15 @@
         "07R" : [10.811369444,106.636827778],
         "25R" : [10.824855555,106.663175],
         "25L" : [10.823713889,106.669530556]
+    },
+
+    "aircraft": {
+        "light": [],
+        "medium": ["A306", "A319", "A320", "A321", "A32B", "A20N", "A21N",
+            "B733", "B734", "B737", "B738", "B739", "AT7", "AT75",
+            "E190", "E35L", "E195", "F2TH", "FA8X"],
+        "heavy": ["A332", "A333", "A343", "A359",
+            "B744", "B752", "B762", "B763", "B772", "B773", "B788", "B789", "B77L", "B77W", "B78X"],
+        "super": []
     }
 }

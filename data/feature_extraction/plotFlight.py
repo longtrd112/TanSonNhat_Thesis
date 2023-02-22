@@ -1,8 +1,8 @@
 import os
 from data.utils.plotMAP import plotMAP, plt
 
-# dataDirectory = "../Extract"  # Original flight data
-dataDirectory = "../Test"  # Sorted flight data
+# # dataDirectory = "../Extract"  # Original flight data
+dataDirectory = "../sortedData"  # Sorted flight data
 for day in os.listdir(dataDirectory):
 
     dayDirectory = os.path.join(dataDirectory, day)
@@ -18,6 +18,6 @@ for day in os.listdir(dataDirectory):
 
 # Test specific flight
 
-# flightDirectory = "../sortedData/2020-05-11/VJ326.csv"
+# flightDirectory = "../sortedData/2020-08-19/VN595.csv"
 # plotMAP(flightDirectory)
 # plt.show()

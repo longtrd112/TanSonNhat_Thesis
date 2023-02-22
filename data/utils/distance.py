@@ -1,4 +1,5 @@
 import geopy.distance
+import numpy as np
 
 
 def distance(a, b):

@@ -5,8 +5,9 @@ import numpy as np
 import pandas as pd
 from data.utils.trim import trim_outside_TMA
 from data.utils.distance import distance
+from data.utils.intersect import intersect, intersect_pt, intersectTMA
+from data.utils.rdp import rdp
 from datetime import datetime
-
 
 np.set_printoptions(suppress=True,
                     formatter={'float_kind': '{:f}'.format})
@@ -114,6 +115,152 @@ def get_time_HCM(time):
     return timeHCM
 
 
+def check_go_around(holding_path, airport):
+    # Check every point
+    min_d = min([distance(point, airport) for point in holding_path])
+
+    # Check segments on which the projected point locates in between
+    for i in range(len(holding_path) - 1):
+        start = holding_path[i, 0:2]
+        end = holding_path[i + 1, 0:2]
+        MN = end - start
+        MP = airport - start
+        proj = np.dot(MP, MN) / np.dot(MN, MN)
+        if 0 < proj < 1:
+            H = start + proj * MN
+            d_MH = distance(H, airport)
+            if d_MH < min_d:
+                min_d = d_MH
+
+    if min_d < 0.05:
+        return True
+    return False
+
+
+def find_holding_waypoint(point, config):
+    distances = [distance(point, config['waypoint'][waypoint]) for waypoint in config['holding_waypoints']]
+    return config['holding_waypoints'][distances.index(min(distances))]
+
+
+def detect_holding(simplified, config):
+    # Detect holding
+    result_holding = []
+    result_go_around = 0
+
+    i = 2
+    cont = i < len(simplified) - 1
+
+    while cont:
+        for j in np.arange(i - 2):
+            inter = intersect(simplified[j, 0:2], simplified[j + 1, 0:2], simplified[i, 0:2], simplified[i + 1, 0:2])
+            if inter == 2:
+                alpha_point = (simplified[j] + simplified[j + 1]) / 2
+                beta_point = (simplified[i] + simplified[i + 1]) / 2
+                new_simplified = np.append(simplified[:j + 1], np.array([alpha_point, beta_point]), axis=0)
+                new_simplified = np.append(new_simplified, simplified[i + 1:], axis=0)
+                simplified = new_simplified
+                result_holding.append([holding_waypoint, beta_point[3] - alpha_point[3]])
+                i = j
+                break
+            if inter == 1:
+                alpha_point, beta_point = intersect_pt(simplified[j], simplified[j + 1], simplified[i],
+                                                       simplified[i + 1])
+                holding_waypoint = find_holding_waypoint(alpha_point, config)
+                holding_time = beta_point[3] - alpha_point[3]
+                if holding_waypoint in config['iaf']:
+                    # check whether a go-around
+                    if check_go_around(simplified[j:i + 2], config['airport']):
+                        result_go_around += 1
+                    else:
+                        result_holding.append([holding_waypoint, holding_time])
+                else:
+                    result_holding.append([holding_waypoint, holding_time])
+
+                new_simplified = np.append(simplified[:j + 1], np.array([alpha_point, beta_point]), axis=0)
+                new_simplified = np.append(new_simplified, simplified[i + 1:], axis=0)
+
+                simplified = new_simplified
+                i = j
+                break
+        i += 1
+        cont = i < len(simplified) - 1
+
+    return simplified, result_holding, result_go_around
+
+
+def compute_distance(simplified, waypoint_dict):
+    # Compute distance between every waypoint and the path
+
+    distance_dict = {}
+    for wp in waypoint_dict:
+        waypoint = waypoint_dict[wp]
+        min_d = 999
+        pos_M = []
+        pos_H = []
+
+        # Check every point
+        for point in simplified:
+            d_point_point = distance(waypoint, point)
+            if d_point_point < min_d:
+                min_d = d_point_point
+                pos_M = point
+                pos_H = point
+
+        # Check segments on which the projected point locates in between
+        for i in range(len(simplified) - 1):
+            start = simplified[i]
+            end = simplified[i + 1]
+            MN = end - start
+            if (MN[0:2] == np.zeros(2)).all():
+                continue
+            MP = waypoint - start[0:2]
+            proj = np.dot(MP, MN[0:2]) / np.dot(MN[0:2], MN[0:2])
+            if 0 < proj < 1:
+                H = start + proj * MN
+                d_MH = distance(waypoint, H)
+                if d_MH < min_d:
+                    min_d = d_MH
+                    pos_H = H
+                    pos_M = start
+
+        distance_dict[wp] = [min_d, pos_M, pos_H]
+    return distance_dict
+
+
+def detect_arrival_route(simplified, distance_dict, config, landing_runway):
+    arrival_dict = config['arrival_dict']
+    waypoint_dict = config['waypoint']
+    min_avg_distance = 999
+    arrival = ""
+
+    for route in arrival_dict:
+        sequence = arrival_dict[route]
+        total_diff = np.sum([distance_dict[waypoint][0] for waypoint in sequence])
+        avg = total_diff / (len(sequence) + 1)
+        if avg < min_avg_distance:
+            min_avg_distance = avg
+            arrival = route
+
+    if landing_runway == "25RL":
+        if arrival == "BAOMY2D":
+            arrival = "BAOMY2F"
+        elif arrival == "BITIS2D":
+            arrival = "BITIS2F"
+        elif arrival == "SAPEN2K":
+            arrival = "SAPEN2M"
+
+    return arrival
+
+
+def find_aircraft_type(model, config):
+    for aircraft_type in config['aircraft']:
+        for aircraft_subtype in config['aircraft'][aircraft_type]:
+            if model in aircraft_subtype:
+                return aircraft_type
+            else:
+                continue
+
+
 class Flight:
     def __init__(self, file_path, config):
 
@@ -132,20 +279,32 @@ class Flight:
         else:
             raise Exception("Unknown data format.")
 
+        # Find the entry-TMA data point
+        interpolated_traj = intersectTMA(traj, config['airport'])
+
         # Trim outside TMA
-        self.traj = trim_outside_TMA(traj)
-        if self.traj.shape[0] < 2:
+        self.traj = trim_outside_TMA(interpolated_traj)
+
+        if self.traj.shape[0] < 5:
             raise Exception(f"Data error, no data within TSN TMA {file_path}.")
 
         self.entry_waypoint = find_entry_waypoint(self.traj, self.config)
-
         self.landing_data = find_landing_location(self.traj)
-
-        self.simplified_near_airport = trim_near_airport(self.traj, config["waypoint"])
-        self.landing_runway = find_landing_runway(self.simplified_near_airport, self.config)
 
         self.entry_time_HCM = get_time_HCM(self.traj[0][3])
         self.arrival_time_HCM = get_time_HCM(self.traj[self.landing_data][3])
+
+        self.distance_to_airport = distance(self.traj[0], config['airport'])
+
+        self.simplified_near_airport = trim_near_airport(self.traj, config["waypoint"])
+
+        self.landing_runway = find_landing_runway(self.simplified_near_airport, self.config)
+
+        model = str(df['aircraft_model'].iloc[0])
+        if model == "nan":
+            self.type = "Unknown"
+        else:
+            self.type = find_aircraft_type(model, config)
 
     def get_info(self, timestamp):
         self.traj['time_diff'] = np.abs(self.traj['timestamp'] - timestamp)
@@ -154,9 +313,3 @@ class Flight:
             self.traj['timestamp'].iloc[index], self.traj['latitude'].iloc[index],
             self.traj['longitude'].iloc[index], self.traj['altitude'].iloc[index],
             self.traj['heading_angle'].iloc[index], self.traj['ground_speed'].iloc[index])
-
-    def get_type(self):
-        try:
-            return self.traj['aircraft_model'][0]
-        except (Exception,):
-            return "unknown"

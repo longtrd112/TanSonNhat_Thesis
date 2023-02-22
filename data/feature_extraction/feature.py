@@ -24,10 +24,11 @@ if __name__ == "__main__":
 
     # Choosing starting and ending date
     start_date = date(2020, 5, 9)
-    end_date = date(2021, 4, 26)
+    end_date = date(2021, 4, 27)
     df = pd.DataFrame()
 
     for date in (start_date + timedelta(n) for n in range(int((end_date - start_date).days) + 1)):
+        print(date)
         folder_path = os.path.join(os.path.abspath(__file__ + "/../../sortedData"), date.strftime("%Y-%m-%d"))
 
         if not os.path.exists(folder_path):
@@ -46,7 +47,8 @@ if __name__ == "__main__":
                              "entry_altitude": flight.traj[0][4], "entry_ground_speed": flight.traj[0][2],
                              "entry_heading_angle": flight.traj[0][5],
                              "entry_time": flight.traj[0][3], "arrival_time": flight.traj[flight.landing_data][3],
-                             "entry_time_HCM": flight.entry_time_HCM, "arrival_time_HCM": flight.arrival_time_HCM}
+                             "entry_time_HCM": flight.entry_time_HCM, "arrival_time_HCM": flight.arrival_time_HCM,
+                             "distance_to_airport": flight.distance_to_airport, "model_type": flight.type}
 
                 df_dictionary = pd.DataFrame([data_dict])
                 df = pd.concat([df, df_dictionary], ignore_index=True)
