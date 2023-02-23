@@ -1,0 +1,5 @@
+timestamp,latitude,longitude,altitude,heading_angle,ground_speed,icao24,origin,destination,airliner,vertical_rate,aircraft_model,flight_number
+1592173774,21.22,105.8,0,0,0,88809D,HAN,SGN,HVN7209,0,A321,VN7209
+1592173774,21.22,105.8,0,0,0,88809D,HAN,SGN,HVN7209,0,A321,VN7209
+1592173774,21.22,105.8,0,0,0,88809D,HAN,SGN,HVN7209,0,A321,VN7209
+1592173774,21.22,105.8,0,0,0,88809D,HAN,SGN,HVN7209,0,A321,VN7209
