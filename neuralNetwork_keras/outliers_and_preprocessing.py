@@ -24,3 +24,12 @@ def normalizeData(df, function, columns):
     # Deal with OneHotEncoding()
     except (Exception,):
         return pd.get_dummies(data=df, columns=columns)
+
+
+def target_scale(y, function):
+    x = y.values
+    label = y.columns
+    x_scaled = function.fit_transform(x)
+    df_temp = pd.DataFrame(x_scaled, columns=label, index=y.index)
+    y[label] = df_temp
+    return y
