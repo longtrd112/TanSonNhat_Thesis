@@ -1,80 +1,28 @@
 import tensorflow as tf
-import math
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, MinMaxScaler, StandardScaler
-from sklearn.model_selection import train_test_split
-from neuralNetwork_keras.outliers_and_preprocessing import drop_outliers_IQR, normalizeData, target_scale
+from preprocessing_data import Data
+from sklearn.metrics import mean_absolute_error
 
-df = pd.read_csv('final_features.csv')
+file_name = 'final_features.csv'
 
-features = ['entry_latitude', 'entry_longitude', 'entry_altitude', 'entry_ground_speed', 'entry_heading_angle',
-            'wind_speed', 'landing_runway', 'model_type']
+# ETA with 1 entry waypoint and with/without 2 previous data points
+if file_name == 'final_features.csv':
+    data = Data(dataFile=pd.read_csv(file_name), dataPoint=1)
+else:
+    data = Data(dataFile=pd.read_csv(file_name), dataPoint=3)
 
-y = pd.DataFrame(df, columns=['time_in_TMA'], index=df.index)
-X = df[features]
+# Data after preprocessing
+X_train, y_train, X_val, y_val, X_test, y_test = data.X_train, data.y_train, \
+                                                 data.X_val, data.y_val, \
+                                                 data.X_test, data.y_test
 
-# Split data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=42)
 
-print(f'Size of training-validation-test set: {y_train.shape}, {y_val.shape}, {y_test.shape}')
-
-# Preprocessing
-# Drop outliers in features
-features_with_outliers = ['entry_altitude', 'entry_ground_speed']
-
-for feature in features_with_outliers:
-    X_train, train_drop_index_1 = drop_outliers_IQR(X_train, feature)
-    y_train = y_train.drop(train_drop_index_1)
-
-    X_val, val_drop_index_1 = drop_outliers_IQR(X_val, feature)
-    y_val = y_val.drop(val_drop_index_1)
-
-    X_test, test_drop_index_1 = drop_outliers_IQR(X_test, feature)
-    y_test = y_test.drop(test_drop_index_1)
-
-# Drop outliers in target
-y_train, train_drop_index_2 = drop_outliers_IQR(y_train, 'time_in_TMA')
-X_train = X_train.drop(train_drop_index_2)
-
-y_val, val_drop_index_2 = drop_outliers_IQR(y_val, 'time_in_TMA')
-X_val = X_val.drop(val_drop_index_2)
-
-y_test, test_drop_index_2 = drop_outliers_IQR(y_test, 'time_in_TMA')
-X_test = X_test.drop(test_drop_index_2)
-
-print(f'Size of training-validation-test set after dropping outliers: {y_train.shape}, {y_val.shape}, {y_test.shape}')
-
-column_to_scale = ['entry_latitude', 'entry_longitude', 'entry_altitude', 'entry_ground_speed', 'entry_heading_angle',
-                   'wind_speed']
-column_to_onehot = ['landing_runway']
-column_to_ordinal = ['model_type']
-
-Preprocessing_Progress = {
-    'min_max_scale': [MinMaxScaler(), column_to_scale],
-    'one_hot_encoding': [OneHotEncoder(sparse_output=False), column_to_onehot],
-    'ordinal_encoding': [OrdinalEncoder(), column_to_ordinal]
-}
-
-for step in Preprocessing_Progress:
-    func = Preprocessing_Progress[step][0]
-    affected_column = Preprocessing_Progress[step][1]
-
-    X_train = normalizeData(X_train, func, affected_column)
-    X_val = normalizeData(X_val, func, affected_column)
-    X_test = normalizeData(X_test, func, affected_column)
-
-# y_train = target_scale(y_train, StandardScaler())
-# y_val = target_scale(y_val, StandardScaler())
-# y_test = target_scale(y_test, StandardScaler())
-
-# Build Keras model
-tf.random.set_seed(42)
+# Model
 batch_size = 128
 initial_learning_rate = 0.1
-epochs = 1000
+max_epochs = 1000
 
 # Exponential decay LR
 lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
@@ -95,16 +43,18 @@ model.compile(loss=tf.keras.losses.mean_squared_error,
               optimizer=optimizer,
               metrics=[tf.keras.metrics.MeanAbsoluteError(), tf.keras.metrics.RootMeanSquaredError()])
 
-callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=100, start_from_epoch=50, verbose=1)
+callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=100, start_from_epoch=50, verbose=2)
 
-result = model.fit(X_train, y_train, epochs=epochs, validation_data=(X_val, y_val), verbose=2,
+result = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val), verbose=2,
                    batch_size=batch_size, workers=6, callbacks=callback)
 
 y_predict = model.predict(X_test)
 
 model.summary()
 
-print(model.evaluate(X_test, y_test))
+model.evaluate(X_test, y_test)
+
+print(mean_absolute_error(y_test, y_predict.values.ravel()))
 
 print('Mean Absolute Percentage Error:',
       100 * np.mean(np.abs((y_test - y_predict) / np.abs(y_test))), '%')
