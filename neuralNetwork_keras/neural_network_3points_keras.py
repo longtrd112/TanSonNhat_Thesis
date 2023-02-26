@@ -85,33 +85,34 @@ for step in Preprocessing_Progress:
 
 
 # Build Keras model
-tf.random.set_seed(42)
-batch_size = 128
-initial_learning_rate = 0.01
-epochs = 1000
+# Model
+batch_size = 32
+initial_learning_rate = 0.1
+max_epochs = 1000
 
 # Exponential decay LR
 lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
     initial_learning_rate=initial_learning_rate,
     decay_steps=1000,
     decay_rate=0.9)
-optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule, clipnorm=1)
+
+optimizer = tf.keras.optimizers.Adam(learning_rate=lr_schedule,  clipnorm=1)
 
 model = tf.keras.Sequential([
+    tf.keras.layers.Dense(100, activation='relu', kernel_regularizer="l2"),
+    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(50, activation='relu', kernel_regularizer="l2"),
-    tf.keras.layers.Dropout(0.2),
-    tf.keras.layers.Dense(20, activation='relu', kernel_regularizer="l1"),
-    tf.keras.layers.Dense(10, activation='relu', kernel_regularizer="l1"),
+    tf.keras.layers.Dense(10, activation='relu', kernel_regularizer="l2"),
     tf.keras.layers.Dense(1, activation='linear')
 ])
 
-model.compile(loss=tf.keras.losses.mean_squared_error,
+model.compile(loss=[tf.keras.losses.mean_squared_error],
               optimizer=optimizer,
               metrics=[tf.keras.metrics.MeanAbsoluteError(), tf.keras.metrics.RootMeanSquaredError()])
 
-callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=100, start_from_epoch=50, verbose=1)
+callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=20, start_from_epoch=10, verbose=2)
 
-result = model.fit(X_train, y_train, epochs=epochs, validation_data=(X_val, y_val), verbose=2,
+result = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val), verbose=2,
                    batch_size=batch_size, workers=6, callbacks=callback)
 
 y_predict = model.predict(X_test)
