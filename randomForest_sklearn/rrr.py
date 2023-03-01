@@ -1,116 +1,67 @@
 import pandas as pd
 import numpy as np
-from matplotlib import pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, MinMaxScaler
 from sklearn.experimental import enable_halving_search_cv
-from sklearn.model_selection import train_test_split, HalvingGridSearchCV
-from randomForest_sklearn.outliers_and_preprocessing import drop_outliers_IQR, normalizeData
-from data_preprocessing import Data1, Data3
+from sklearn.model_selection import HalvingGridSearchCV
+from randomForest_sklearn.utils.data_preprocessing import Data1, Data3
 
-df = pd.read_csv('final_features.csv')
 
-features = ['entry_latitude', 'entry_longitude', 'entry_altitude', 'entry_ground_speed', 'entry_heading_angle',
-            'distance_to_airport', 'wind_speed', 'landing_runway', 'model_type']
+def get_data(file_name):
+    # ETA with 1 entry waypoint and with/without 2 previous data points
+    if file_name == 'final_data.csv':
+        data = Data1(dataFile=pd.read_csv(file_name).dropna())
+    elif file_name == 'final_data_3points.csv':
+        data = Data3(dataFile=pd.read_csv(file_name).dropna())
+    else:
+        raise Exception("Invalid data file.")
 
-features_with_outliers = ['entry_altitude', 'entry_ground_speed', 'distance_to_airport', 'wind_speed']
+    return data
 
-y = pd.DataFrame(df, columns=['time_in_TMA'], index=df.index)
-X = df[features]
 
-# Split data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.15, random_state=42)
+class CreateRandomForestModel:
+    def __init__(self, data):
+        self.data = data
 
-print(f'Size of training-validation-test set: {y_train.shape}, {y_val.shape}, {y_test.shape}')
+        # Data after preprocessing: dropping outliers, splitting training, scaling features
+        X_train, y_train, X_val, y_val, X_test, y_test = \
+            data.X_train, data.y_train, data.X_val, data.y_val, data.X_test, data.y_test
+        number_of_features = data.number_of_features
 
-# Preprocessing
-# Drop outliers in features
-for feature in features_with_outliers:
-    X_train, train_drop_index_1 = drop_outliers_IQR(X_train, feature)
-    y_train = y_train.drop(train_drop_index_1)
+        # Random forest model
 
-    X_val, val_drop_index_1 = drop_outliers_IQR(X_val, feature)
-    y_val = y_val.drop(val_drop_index_1)
+        # Hyperparameter tuning with HalvingGridSearchCV
 
-    X_test, test_drop_index_1 = drop_outliers_IQR(X_test, feature)
-    y_test = y_test.drop(test_drop_index_1)
+        hyper_parameters = {
+            'max_depth': [18, 19, 20],
+            'max_features': [9, 10, 11],
+            'min_samples_leaf': [2, 3, 4]
+        }
 
-# Drop outliers in target
-y_train, train_drop_index_2 = drop_outliers_IQR(y_train, 'time_in_TMA')
-X_train = X_train.drop(train_drop_index_2)
+        grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42, n_estimators=1000),
+                                          param_grid=hyper_parameters, n_jobs=-1, random_state=42, verbose=0,
+                                          scoring='neg_mean_absolute_error')
+        grid_search.fit(X_train, y_train.values.ravel())
 
-y_val, val_drop_index_2 = drop_outliers_IQR(y_val, 'time_in_TMA')
-X_val = X_val.drop(val_drop_index_2)
+        print(grid_search.best_params_)
+        print(grid_search.best_score_)
 
-y_test, test_drop_index_2 = drop_outliers_IQR(y_test, 'time_in_TMA')
-X_test = X_test.drop(test_drop_index_2)
+        # After running, hyper-parameters with the best score are used below.
+        ''''''
 
-print(f'Size of training-validation-test set after dropping outliers: {y_train.shape}, {y_val.shape}, {y_test.shape}')
+        # rfr = RandomForestRegressor(max_depth=15, max_features=4, min_samples_leaf=3, n_estimators=5000, n_jobs=6)
+        # rfr.fit(X_train, y_train.values.ravel())
+        #
+        # # Prediction
+        # y_predict = rfr.predict(X_test)
+        #
+        # # Evaluate the metrics
+        # self.mae = mean_absolute_error(y_test.to_numpy(), y_predict.reshape(-1, 1))
+        # self.rmse = np.sqrt(mean_squared_error(y_test.to_numpy(), y_predict.reshape(-1, 1)))
+        # self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict.reshape(-1, 1)) / np.abs(y_test.to_numpy())))
 
-column_to_scale = ['entry_latitude', 'entry_longitude', 'entry_altitude', 'entry_ground_speed', 'entry_heading_angle',
-                   'distance_to_airport', 'wind_speed']
-column_to_onehot = ['landing_runway']
-column_to_ordinal = ['model_type']
 
-Preprocessing_Progress = {
-    'min_max_scale': [MinMaxScaler(), column_to_scale],
-    'one_hot_encoding': [OneHotEncoder(sparse_output=False), column_to_onehot],
-    'ordinal_encoding': [OrdinalEncoder(), column_to_ordinal]
-}
-
-for step in Preprocessing_Progress:
-    func = Preprocessing_Progress[step][0]
-    affected_column = Preprocessing_Progress[step][1]
-
-    X_train = normalizeData(X_train, func, affected_column)
-    X_val = normalizeData(X_val, func, affected_column)
-    X_test = normalizeData(X_test, func, affected_column)
-
-feature_columns = X_train.columns
-
-# Build random forest model
-'''
-# Hyper-parameter tuning with HalvingGridSearchCV
-hyper_parameters = {
-    'n_estimators': [500, 1000, 2000, 5000],
-    'max_depth': [3, 4, 5, 9, 10, 11],
-    'max_features': [4, 5, 6, 9],
-    'min_samples_leaf': [3, 4, 5, 6]
-}
-
-grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42), 
-                                  param_grid=hyper_parameters, n_jobs=7, random_state=42, verbose=2)    
-grid_search.fit(X_train, y_train.values.ravel())
-
-print(grid_search.best_params_)
-
-After running, hyper-parameters with the best score are used below.
-'''
-
-rfr = RandomForestRegressor(max_depth=10, max_features=5, min_samples_leaf=5, n_estimators=5000,
-                            random_state=42, n_jobs=4)
-
-y_predict = rfr.predict(X_test)
-
-# Evaluate the metrics
-print('Mean Absolute Error: ', mean_absolute_error(y_test, y_predict.reshape(-1, 1)), 'seconds')
-print('Root Mean Squared Error: ', np.sqrt(mean_squared_error(y_test, y_predict.reshape(-1, 1))), 'seconds')
-print('Mean Absolute Percentage Error: ',
-      100 * np.mean(np.abs((y_test - y_predict.reshape(-1, 1)) / np.abs(y_test))), '%')
-
-# train_sizes, train_scores, test_scores = learning_curve(
-#             rfr, X_train, y_train.values.ravel(), cv=5, scoring='neg_mean_squared_error', n_jobs=4)
-#
-# train_scores_mean = -np.mean(train_scores, axis=1)
-# test_scores_mean = -np.mean(test_scores, axis=1)
-#
-# # plt.figure()
-# # plt.title('Learning Curve')
-# # plt.xlabel('Training Set Size')
-# # plt.ylabel('MSE')
-# # plt.plot(train_sizes, train_scores_mean, 'o-', color='r', label='Training Error')
-# # plt.plot(train_sizes, test_scores_mean, 'o-', color='g', label='Validation Error')
-# # plt.legend(loc='best')
-# # plt.show()
+for i in range(0, 10):
+    print(i)
+    model = CreateRandomForestModel(data=get_data(file_name='final_data_3points.csv'))
+    print('\n')

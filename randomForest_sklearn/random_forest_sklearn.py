@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from matplotlib import pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.experimental import enable_halving_search_cv
@@ -54,7 +53,6 @@ class CreateRandomForestModel:
 
         # Prediction
         y_predict = rfr.predict(X_test)
-        y_cal = y_test.to_numpy()
 
         # Evaluate the metrics
         self.mae = mean_absolute_error(y_test.to_numpy(), y_predict.reshape(-1, 1))

@@ -111,7 +111,6 @@ class Data3:
 
             dataFile = dataFile.drop(dataFile[dataFile.distance_to_airport < 50].index, inplace=False)
             dataFile = dataFile.drop(['distance_to_airport'], axis=1)
-            dataFile = drop_outliers_IQR(dataFile, 'time_in_TMA')
 
             X = dataFile[self.features]
             y = pd.DataFrame(dataFile, columns=['time_in_TMA'], index=dataFile.index)

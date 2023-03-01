@@ -66,5 +66,9 @@ class CreateNeuralNetworkModel:
         self.rmse = np.sqrt(mean_squared_error(y_test, y_predict))
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict) / np.abs(y_test.to_numpy())))
 
-        # PlotLoss(result, y_test, y_predict)
-        # plt.show()
+        PlotLoss(result, y_test, y_predict)
+        plt.show()
+
+
+# Test
+# model = CreateNeuralNetworkModel(data=get_data(file_name"final_data.csv"))
