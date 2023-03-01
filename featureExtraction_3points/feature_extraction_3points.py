@@ -43,20 +43,21 @@ if __name__ == "__main__":
                 data_dict = {"flight": flight_name.split(".")[0], "date": date,
                              "entry_waypoint": flight.entry_waypoint, "landing_runway": flight.landing_runway,
 
-                             "first_latitude": flight.first_point_data[0],
-                             "first_longitude": flight.first_point_data[1],
+                             "first_latitude": flight.first_point_data[0] - 10.8188,
+                             "first_longitude": flight.first_point_data[1] - 106.652,
                              "first_altitude": flight.first_point_data[4],
                              "first_ground_speed": flight.first_point_data[2],
                              "first_heading_angle": flight.first_point_data[5],
 
-                             "second_latitude": flight.second_point_data[0],
-                             "second_longitude": flight.second_point_data[1],
+                             "second_latitude": flight.second_point_data[0] - 10.8188,
+                             "second_longitude": flight.second_point_data[1] - 106.652,
                              "second_altitude": flight.second_point_data[4],
                              "second_ground_speed": flight.second_point_data[2],
                              "second_heading_angle": flight.second_point_data[5],
 
 
-                             "entry_latitude": flight.traj[0][0], "entry_longitude": flight.traj[0][1],
+                             "entry_latitude": flight.traj[0][0] - 10.8188,
+                             "entry_longitude": flight.traj[0][1] - 106.652,
                              "entry_altitude": flight.traj[0][4], "entry_ground_speed": flight.traj[0][2],
                              "entry_heading_angle": flight.traj[0][5],
 
