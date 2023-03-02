@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-from neuralNetwork_keras.utils.data_preprocessing import Data1, Data3
+from neuralNetwork_keras.utils.data_preprocessing_NN import Data1, Data3
 from neuralNetwork_keras.utils.plot_loss import PlotLoss
 
 
@@ -71,4 +71,5 @@ class CreateNeuralNetworkModel:
 
 
 # Test
-# model = CreateNeuralNetworkModel(data=get_data(file_name"final_data.csv"))
+# model_1 = CreateNeuralNetworkModel(data=get_data(file_name"final_data.csv"))
+# model_3 = CreateNeuralNetworkModel(data=get_data(file_name"final_data_3points.csv"))

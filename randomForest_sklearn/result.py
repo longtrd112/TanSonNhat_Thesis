@@ -3,14 +3,14 @@ import warnings
 from random_forest_sklearn import get_data, CreateRandomForestModel
 warnings.filterwarnings("ignore")
 
-file_name = 'final_data.csv'
+file_name = 'final_data_3points.csv'
 
 MAE_history = []
 RMSE_history = []
 MAPE_history = []
 error_count = 0
 
-for i in range(0, 100):
+for i in range(0, 10):
     try:
         data = get_data(file_name)
         model = CreateRandomForestModel(data)
@@ -29,7 +29,7 @@ for i in range(0, 100):
 
 print('Number of error: ', error_count)
 
-with open('result_output.txt', 'w') as f:
+with open('result_output_3.txt', 'w') as f:
     print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
     print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
     print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
@@ -40,4 +40,4 @@ history = {
     'MAPE': MAPE_history
 }
 historyDF = pd.DataFrame(data=history)
-historyDF.to_csv('loss_history.csv', index=False)
+historyDF.to_csv('loss_history_3.csv', index=False)

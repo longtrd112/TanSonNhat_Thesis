@@ -6,7 +6,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, MinMaxScaler
 from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import train_test_split, HalvingGridSearchCV
-from randomForest_sklearn.utils.data_preprocessing import Data1, Data3
+from randomForest_sklearn.utils.data_preprocessing_RF import Data1, Data3
 
 df = pd.read_csv('final_features_3points.csv')
 

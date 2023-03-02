@@ -4,8 +4,8 @@ from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, StandardScaler, R
 
 
 def drop_outliers_IQR(df, feature):
-    q1 = df[feature].quantile(0.01)
-    q3 = df[feature].quantile(0.99)
+    q1 = df[feature].quantile(0.25)
+    q3 = df[feature].quantile(0.75)
     IQR = q3 - q1
 
     # outliers_index = df[((df[feature] < (q1 - 1.5 * IQR)) | (df[feature] > (q3 + 1.5 * IQR)))].index
@@ -16,9 +16,8 @@ def drop_outliers_IQR(df, feature):
 
 def split_data(X, y):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25)
 
-    return X_train, y_train, X_val, y_val, X_test, y_test
+    return X_train, y_train, X_test, y_test
 
 
 def dataFitTransform(df, function, columns):
@@ -36,16 +35,15 @@ def dataFitTransform(df, function, columns):
         return pd.get_dummies(data=df, columns=columns)
 
 
-def featuresProcessing(Feature_Processing_Dict, train, val, test):
+def featuresProcessing(Feature_Processing_Dict, train, test):
     for step in Feature_Processing_Dict:
         function = Feature_Processing_Dict[step][0]
         affected_columns = Feature_Processing_Dict[step][1]
 
         train = dataFitTransform(train, function, affected_columns)
-        val = dataFitTransform(val, function, affected_columns)
         test = dataFitTransform(test, function, affected_columns)
 
-    return train, val, test
+    return train, test
 
 
 class Data1:
@@ -72,8 +70,8 @@ class Data1:
             self.y = y
 
             # Splitting data set
-            X_train, self.y_train, X_val, self.y_val, X_test, self.y_test = split_data(X, y)
-            print("Size of training - validation - test set: ", len(X_train), len(X_val), len(X_test))
+            X_train, self.y_train, X_test, self.y_test = split_data(X, y)
+            print("Size of training - test set: ", len(X_train), len(X_test))
 
             # Scaling features
             Feature_Processing_Dict = {
@@ -82,7 +80,7 @@ class Data1:
                 'one_hot_encoding': [OneHotEncoder(sparse_output=False), self.columns_to_onehot]
             }
 
-            self.X_train, self.X_val, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_val, X_test)
+            self.X_train, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_test)
             self.number_of_features = len(self.X_train.columns)
 
         except (Exception,):
@@ -124,8 +122,8 @@ class Data3:
             self.y = y
 
             # Splitting data set
-            X_train, self.y_train, X_val, self.y_val, X_test, self.y_test = split_data(X, y)
-            print("Size of training - validation - test set: ", len(X_train), len(X_val), len(X_test))
+            X_train, self.y_train, X_test, self.y_test = split_data(X, y)
+            print("Size of training - test set: ", len(X_train), len(X_test))
 
             # Scaling features
             Feature_Processing_Dict = {
@@ -135,7 +133,7 @@ class Data3:
                 'one_hot_encoding': [OneHotEncoder(sparse_output=False), self.columns_to_onehot]
             }
 
-            self.X_train, self.X_val, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_val, X_test)
+            self.X_train, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_test)
             self.number_of_features = len(self.X_train.columns)
 
         except (Exception,):
