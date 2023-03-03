@@ -47,7 +47,7 @@ class CreateRandomForestModel:
             }
 
         grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42, n_estimators=3000),
-                                          param_grid=hyper_parameters, n_jobs=-1, random_state=42, verbose=0,
+                                          param_grid=hyper_parameters, n_jobs=-1, random_state=42, verbose=1,
                                           scoring='neg_mean_absolute_error')
         grid_search.fit(X_train, y_train.values.ravel())
 
