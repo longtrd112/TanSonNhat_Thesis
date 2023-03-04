@@ -1,10 +1,15 @@
 # TanSonNhat_Thesis
 
 1. Raw extracted data is located in /data/Extract/date/flight
+
 2. METAR data is located in /data/
+
 3.  Step 1: Run /dataSorting/data_sorting.py -> generate sorted data located in /data/sortedData/date/flight
+
     Step 2: Run /featureExtraction/feature_extraction.py -> generate 'extracted_features.csv' in the same directory
+	
     Step 3: Run /featureExtraction_3points/feature_extraction_3points.py -> generate 'extracted_features_3points.csv' in the same directory
+	
     Step 4: Build machine learning model:
             4.1 Random Forest
                 4.1.1 Run /randomForest_sklearn/utils/add_metar_features.py and /randomForest_sklearn/utils/add_metar_features_3points.py
