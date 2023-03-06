@@ -41,7 +41,7 @@ class CreateNeuralNetworkModel:
         optimizer = tf.keras.optimizers.Adam(epsilon=10e-4, clipnorm=1)
 
         plateau = tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=0.000001)
-        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, min_delta=400, verbose=2)
+        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, min_delta=400, verbose=0)
 
         model = tf.keras.Sequential([
             tf.keras.layers.Dense(units=100, activation='relu', kernel_regularizer='l1_l2',
@@ -50,11 +50,11 @@ class CreateNeuralNetworkModel:
             tf.keras.layers.Dense(units=1, activation=tf.keras.layers.LeakyReLU(alpha=0.005))
         ])
 
-        model.compile(loss=tf.keras.losses.mean_squared_error, optimizer=optimizer,
+        model.compile(loss=tf.keras.losses.mean_absolute_error, optimizer=optimizer,
                       metrics=[tf.keras.metrics.MeanAbsoluteError(), tf.keras.metrics.RootMeanSquaredError()])
 
         result = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val),
-                           batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=2)
+                           batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=0)
         model.summary()
 
         # Prediction
@@ -66,10 +66,10 @@ class CreateNeuralNetworkModel:
         self.rmse = np.sqrt(mean_squared_error(y_test, y_predict))
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict) / np.abs(y_test.to_numpy())))
 
-        PlotLoss(result, y_test, y_predict)
-        plt.show()
+        # PlotLoss(result, y_test, y_predict)
+        # plt.show()
 
 
 # Test
-# model_1 = CreateNeuralNetworkModel(data=get_data(file_name"final_data.csv"))
-# model_3 = CreateNeuralNetworkModel(data=get_data(file_name"final_data_3points.csv"))
+# model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"))
+# model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"))

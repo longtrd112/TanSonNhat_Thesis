@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_error
 
 
 def plot_loss_history(result, y_test, y_predict, start_epoch):
@@ -8,9 +8,13 @@ def plot_loss_history(result, y_test, y_predict, start_epoch):
     plt.plot(plot_range, result.history['loss'][start_epoch - 1: -1], label='training loss')
     plt.plot(plot_range, result.history['val_loss'][start_epoch - 1: -1], label='validation loss')
 
-    # Plot test loss value
-    plt.scatter(x=(len(result.history['loss']) - 1), y=mean_squared_error(y_test, y_predict))
-    plt.text((len(result.history['loss']) - 1), mean_squared_error(y_test, y_predict), "Test Loss")
+    # Plot test MSE loss value
+    # plt.scatter(x=(len(result.history['loss']) - 1), y=mean_squared_error(y_test, y_predict))
+    # plt.text((len(result.history['loss']) - 1), mean_squared_error(y_test, y_predict), "Test Loss")
+
+    # Plot test MAE loss value
+    plt.scatter(x=(len(result.history['loss']) - 1), y=mean_absolute_error(y_test, y_predict))
+    plt.text((len(result.history['loss']) - 1), mean_absolute_error(y_test, y_predict), "Test Loss")
 
     plt.xticks(range(start_epoch, len(result.history['loss']), 5))
 
