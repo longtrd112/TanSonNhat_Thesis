@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from neuralNetwork_keras.utils.data_preprocessing_NN import Data1, Data3
 from neuralNetwork_keras.utils.plot_loss import PlotLoss
+from neuralNetwork_keras.utils.plot_feature_importance import plot_feature_importance
 
 
 def get_data(file_name):
@@ -20,12 +21,12 @@ def get_data(file_name):
 
 
 class CreateNeuralNetworkModel:
-    def __init__(self, data):
+    def __init__(self, data, loop):
         self.data = data
 
         # Data after preprocessing: dropping outliers, splitting training, scaling features
-        X_train, y_train, X_val, y_val, X_test, y_test = \
-            data.X_train, data.y_train, data.X_val, data.y_val, data.X_test, data.y_test
+        X_train, y_train, X_val, y_val, X_test, y_test, X, y = \
+            data.X_train, data.y_train, data.X_val, data.y_val, data.X_test, data.y_test, data.X, data.y
         number_of_features = data.number_of_features
 
         # Features histogram
@@ -66,10 +67,16 @@ class CreateNeuralNetworkModel:
         self.rmse = np.sqrt(mean_squared_error(y_test, y_predict))
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict) / np.abs(y_test.to_numpy())))
 
-        # PlotLoss(result, y_test, y_predict)
-        # plt.show()
+        if not loop:
+            # Plot loss history
+            PlotLoss(result=result, data=data, model=model)
+            plt.show()
+
+            # Plot feature importance
+            plot_feature_importance(model, X, y)
+            plt.show()
 
 
 # Test
-# model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"))
-# model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"))
+# model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"), loop=False)
+model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)

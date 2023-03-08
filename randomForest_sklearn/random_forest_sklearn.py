@@ -1,10 +1,12 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import HalvingGridSearchCV
 from randomForest_sklearn.utils.data_preprocessing_RF import Data1, Data3
+from randomForest_sklearn.utils.plot_feature_importance import plot_feature_importance
 
 
 def get_data(file_name):
@@ -22,7 +24,7 @@ def get_data(file_name):
 
 
 class CreateRandomForestModel:
-    def __init__(self, data):
+    def __init__(self, data, loop):
         self.data = data
 
         # Data after preprocessing: dropping outliers, splitting training, scaling features
@@ -34,16 +36,16 @@ class CreateRandomForestModel:
         # Hyperparameter tuning with HalvingGridSearchCV (different for each input data set)
         if 'first_latitude' in X_train.columns:     # 3-points data
             hyper_parameters = {
-                'max_depth': [17, 18, 19, 20, 21],
-                'max_features': [8, 9, 10, 11, 12],
-                'min_samples_leaf': [1, 2, 3, 4, 5]
+                'max_depth': [16, 17, 18, 19, 20, 21],
+                'max_features': [7, 8, 9, 10, 11, 12],
+                'min_samples_leaf': [1, 2, 3]
             }
 
         else:                                       # 1 entry-TMA point data
             hyper_parameters = {
                 'max_depth': [10, 11, 12, 13, 14],
                 'max_features': [4, 5, 6, 7, 8],
-                'min_samples_leaf': [1, 2, 3, 4, 5]
+                'min_samples_leaf': [1, 2, 3]
             }
 
         grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42, n_estimators=3000),
@@ -51,8 +53,8 @@ class CreateRandomForestModel:
                                           scoring='neg_mean_absolute_error')
         grid_search.fit(X_train, y_train.values.ravel())
 
-        # print("Optimal hyperparameter value: ", grid_search.best_params_)
-        # print(grid_search.best_score_)
+        print("Optimal hyperparameter value: ", grid_search.best_params_)
+        print("Best grid search score: ", grid_search.best_score_)
 
         # Prediction
         y_predict = grid_search.predict(X_test)
@@ -62,7 +64,12 @@ class CreateRandomForestModel:
         self.rmse = np.sqrt(mean_squared_error(y_test.to_numpy(), y_predict.reshape(-1, 1)))
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict.reshape(-1, 1)) / np.abs(y_test.to_numpy())))
 
+        # Plot feature importance
+        if not loop:
+            plot_feature_importance(grid_search, data)
+            plt.show()
+
 
 # Test
-# model_1 = CreateRandomForestModel(data=get_data(file_name='final_data.csv'))
-# model_3 = CreateRandomForestModel(data=get_data(file_name='final_data_3points.csv'))
+model_1 = CreateRandomForestModel(data=get_data(file_name='final_data.csv'), loop=False)
+# model_3 = CreateRandomForestModel(data=get_data(file_name='final_data_3points.csv'), loop=False)

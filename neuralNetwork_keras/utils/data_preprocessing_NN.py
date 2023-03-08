@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, StandardScaler, RobustScaler
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, StandardScaler, RobustScaler, OrdinalEncoder
 
 
 def drop_outliers_IQR(df, feature):
@@ -54,13 +54,14 @@ class Data1:
             self.features = ['entry_latitude', 'entry_longitude', 'entry_altitude',
                              'entry_ground_speed', 'entry_heading_angle',
                              'model_type', 'landing_runway',
-                             'wind_speed', 'visibility']
+                             'wind_speed', 'visibility', "skyc1", "skyc2", "skyc3"]
             self.features_with_outliers = []
 
-            self.columns_to_standard = ['entry_altitude', 'entry_ground_speed']
-            self.columns_to_onehot = ['model_type', 'landing_runway']
-            column_not_to_minmax = self.columns_to_standard + self.columns_to_onehot
-            self.columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
+            columns_to_standard = ['entry_altitude', 'entry_ground_speed']
+            columns_to_onehot = ['model_type', 'landing_runway']
+            columns_to_ordinal = ['skyc1', 'skyc2', 'skyc3']
+            column_not_to_minmax = columns_to_standard + columns_to_onehot + columns_to_ordinal
+            columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
 
             dataFile = dataFile.drop(dataFile[dataFile.distance_to_airport < 50].index, inplace=False)
             dataFile = dataFile.drop(['distance_to_airport'], axis=1)
@@ -68,22 +69,23 @@ class Data1:
             X = dataFile[self.features]
             y = pd.DataFrame(dataFile, columns=['time_in_TMA'], index=dataFile.index)
 
-            self.X = X
-            self.y = y
-
             # Splitting data set
             X_train, self.y_train, X_val, self.y_val, X_test, self.y_test = split_data(X, y)
             print("Size of training - validation - test set: ", len(X_train), len(X_val), len(X_test))
 
             # Scaling features
             Feature_Processing_Dict = {
-                'min_max_scale': [MinMaxScaler(), self.columns_to_minmax],
-                'standard_scale': [StandardScaler(), self.columns_to_standard],
-                'one_hot_encoding': [OneHotEncoder(sparse_output=False), self.columns_to_onehot]
+                'min_max_scale': [MinMaxScaler(), columns_to_minmax],
+                'standard_scale': [StandardScaler(), columns_to_standard],
+                'ordinal_encoding': [OrdinalEncoder(), columns_to_ordinal],
+                'one_hot_encoding': [OneHotEncoder(sparse_output=False), columns_to_onehot]
             }
 
             self.X_train, self.X_val, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_val, X_test)
             self.number_of_features = len(self.X_train.columns)
+
+            self.X = pd.concat([self.X_train, self.X_val, self.X_test], axis=0)
+            self.y = pd.concat([self.y_train, self.y_val, self.y_test], axis=0)
 
         except (Exception,):
             raise Exception("Add METAR data to features by using code in utils.")
@@ -99,15 +101,16 @@ class Data3:
                              'entry_latitude', 'entry_longitude', 'entry_altitude',
                              'entry_ground_speed', 'entry_heading_angle',
                              'model_type', 'landing_runway',
-                             'wind_speed', 'visibility']
+                             'wind_speed', 'visibility', 'skyc1', 'skyc2', 'skyc3']
             self.features_with_outliers = []
 
-            self.columns_to_robust = ['first_latitude', 'second_latitude', 'first_longitude', 'second_longitude']
-            self.columns_to_standard = ['entry_altitude', 'entry_ground_speed',
-                                        'first_ground_speed', 'second_ground_speed']
-            self.columns_to_onehot = ['model_type', 'landing_runway']
-            column_not_to_minmax = self.columns_to_robust + self.columns_to_standard + self.columns_to_onehot
-            self.columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
+            columns_to_robust = ['first_latitude', 'second_latitude', 'first_longitude', 'second_longitude']
+            columns_to_standard = ['entry_altitude', 'entry_ground_speed',
+                                   'first_ground_speed', 'second_ground_speed']
+            columns_to_onehot = ['model_type', 'landing_runway']
+            columns_to_ordinal = ['skyc1', 'skyc2', 'skyc3']
+            column_not_to_minmax = columns_to_robust + columns_to_standard + columns_to_onehot + columns_to_ordinal
+            columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
 
             dataFile = dataFile.drop(dataFile[dataFile.distance_to_airport < 50].index, inplace=False)
             dataFile = dataFile.drop(['distance_to_airport'], axis=1)
@@ -121,23 +124,24 @@ class Data3:
             #     X, drop_feature_index = drop_outliers_IQR(X, feature)
             #     y = y.drop(drop_feature_index)
 
-            self.X = X
-            self.y = y
-
             # Splitting data set
             X_train, self.y_train, X_val, self.y_val, X_test, self.y_test = split_data(X, y)
             print("Size of training - validation - test set: ", len(X_train), len(X_val), len(X_test))
 
             # Scaling features
             Feature_Processing_Dict = {
-                'robust_scale': [RobustScaler(), self.columns_to_robust],
-                'min_max_scale': [MinMaxScaler(), self.columns_to_minmax],
-                'standard_scale': [StandardScaler(), self.columns_to_standard],
-                'one_hot_encoding': [OneHotEncoder(sparse_output=False), self.columns_to_onehot]
+                'robust_scale': [RobustScaler(), columns_to_robust],
+                'min_max_scale': [MinMaxScaler(), columns_to_minmax],
+                'standard_scale': [StandardScaler(), columns_to_standard],
+                'ordinal_encoding': [OrdinalEncoder(), columns_to_ordinal],
+                'one_hot_encoding': [OneHotEncoder(sparse_output=False), columns_to_onehot]
             }
 
             self.X_train, self.X_val, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_val, X_test)
             self.number_of_features = len(self.X_train.columns)
+
+            self.X = pd.concat([self.X_train, self.X_val, self.X_test], axis=0)
+            self.y = pd.concat([self.y_train, self.y_val, self.y_test], axis=0)
 
         except (Exception,):
             raise Exception("Add METAR data to features by using code in utils.")

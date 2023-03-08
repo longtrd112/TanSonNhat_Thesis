@@ -3,7 +3,7 @@ import warnings
 from random_forest_sklearn import get_data, CreateRandomForestModel
 warnings.filterwarnings("ignore")
 
-file_name = 'final_data_3points.csv'
+file_name = 'final_data.csv'
 
 MAE_history = []
 RMSE_history = []
@@ -12,8 +12,7 @@ error_count = 0
 
 for i in range(0, 10):
     try:
-        data = get_data(file_name)
-        model = CreateRandomForestModel(data)
+        model = CreateRandomForestModel(data=get_data(file_name), loop=True)
 
         if model.mape > 20:
             error_count += 1
@@ -27,17 +26,26 @@ for i in range(0, 10):
         error_count += 1
         print(e)
 
-print('Number of error: ', error_count)
-
-with open('result_output_3.txt', 'w') as f:
-    print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
-    print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
-    print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
-
-history = {
+history_dict = {
     'MAE': MAE_history,
     'RMSE': RMSE_history,
     'MAPE': MAPE_history
 }
-historyDF = pd.DataFrame(data=history)
-historyDF.to_csv('loss_history_3.csv', index=False)
+
+if file_name == 'final_data.csv':
+    with open('result_output_random_forest.txt', 'w') as f:
+        print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
+        print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
+        print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
+
+    history = pd.DataFrame(data=history_dict)
+    history.to_csv('loss_history_random_forest.csv', index=False)
+
+else:
+    with open('result_output_random_forest_3points.txt', 'w') as f:
+        print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
+        print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
+        print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
+
+    history = pd.DataFrame(data=history_dict)
+    history.to_csv('loss_history_random_forest_3points.csv', index=False)
