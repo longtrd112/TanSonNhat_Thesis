@@ -13,6 +13,7 @@ def plotMAP(flightDirectory):
 
         traj = df[['latitude', 'longitude']].to_numpy()
         trimOutsideTraj = trim_outside_TMA(traj)
+        trimOutsideTraj = traj                      # Plot full trajectory if necessary
         # trimNearAirport = trim_near_airport(trimOutsideTraj, tsn['waypoint'])
 
         # TSN Airport

@@ -29,7 +29,11 @@ class CreateNeuralNetworkModel:
             data.X_train, data.y_train, data.X_val, data.y_val, data.X_test, data.y_test, data.X, data.y
         number_of_features = data.number_of_features
 
-        # Features histogram
+        # X_train = X_train.drop(['skyc1'], axis=1)
+        # X_val = X_val.drop(['skyc1'], axis=1)
+        # X_test = X_test.drop(['skyc1'], axis=1)
+
+        # # Features histogram
         # for feature in data.X.columns:
         #     plt.hist(data.X[feature])
         #     plt.title(feature)
@@ -55,7 +59,7 @@ class CreateNeuralNetworkModel:
                       metrics=[tf.keras.metrics.MeanAbsoluteError(), tf.keras.metrics.RootMeanSquaredError()])
 
         result = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val),
-                           batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=0)
+                           batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=2)
         model.summary()
 
         # Prediction
@@ -72,11 +76,11 @@ class CreateNeuralNetworkModel:
             PlotLoss(result=result, data=data, model=model)
             plt.show()
 
-            # Plot feature importance
-            plot_feature_importance(model, X, y)
-            plt.show()
+            # # Plot feature importance
+            # plot_feature_importance(model, X, y)
+            # plt.show()
 
 
 # Test
 # model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"), loop=False)
-model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)
+# model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)

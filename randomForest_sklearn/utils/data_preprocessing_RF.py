@@ -52,12 +52,12 @@ class Data1:
             self.features = ['entry_latitude', 'entry_longitude', 'entry_altitude',
                              'entry_ground_speed', 'entry_heading_angle',
                              'model_type', 'landing_runway',
-                             'wind_speed', 'visibility', "skyc1", "skyc2", "skyc3"]
+                             'wind_speed', 'visibility', "skyc1"]
             self.features_with_outliers = []
 
             columns_to_standard = ['entry_altitude', 'entry_ground_speed']
             columns_to_onehot = ['model_type', 'landing_runway']
-            columns_to_ordinal = ['skyc1', 'skyc2', 'skyc3']
+            columns_to_ordinal = ['skyc1']
             column_not_to_minmax = columns_to_standard + columns_to_onehot + columns_to_ordinal
             columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
 
@@ -99,14 +99,14 @@ class Data3:
                              'entry_latitude', 'entry_longitude', 'entry_altitude',
                              'entry_ground_speed', 'entry_heading_angle',
                              'model_type', 'landing_runway',
-                             'wind_speed', 'visibility', 'skyc1', 'skyc2', 'skyc3']
+                             'wind_speed', 'visibility', 'skyc1']
             self.features_with_outliers = []
 
             columns_to_robust = ['first_latitude', 'second_latitude', 'first_longitude', 'second_longitude']
             columns_to_standard = ['entry_altitude', 'entry_ground_speed',
                                    'first_ground_speed', 'second_ground_speed']
             columns_to_onehot = ['model_type', 'landing_runway']
-            columns_to_ordinal = ['skyc1', 'skyc2', 'skyc3']
+            columns_to_ordinal = ['skyc1']
             column_not_to_minmax = columns_to_robust + columns_to_standard + columns_to_onehot + columns_to_ordinal
             columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
 

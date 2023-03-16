@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from featureExtraction.utils.plotMAP import plotMAP, plt
 
 dataDirectory = "../data/sortedData"  # Sorted flight data

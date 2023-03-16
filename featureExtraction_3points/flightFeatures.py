@@ -82,6 +82,40 @@ def intersectTMA(traj, airport):
                 return new_traj, intersect_with_TMA_index
 
 
+def intersectLandingPoint(traj):
+    if traj[-1][4] >= 500:
+        return traj
+
+    else:
+        for i in range(len(traj) - 1):
+            if traj[i][4] == 500:
+                return traj
+
+            elif traj[i][4] > 500 and traj[i + 1][4] > 500:
+                continue
+
+            elif traj[i][4] > 500 and traj[i + 1][4] < 500:
+                # Split the line between 2 points in-out of TMA
+                segments = split(traj[i], traj[i + 1], 200)
+                data_point = 0
+
+                # Find the inside-and-nearest-to-TMA point (the outside points will be trimmed later)
+                for j in range(len(segments)):
+                    if segments[j][4] > 500:
+                        continue
+
+                    else:
+                        data_point = j
+                        break
+
+                linear_interpolate_value_row = np.array(segments[data_point])
+
+                # Add new point to trajectory
+                new_traj = np.insert(traj, i + 1, linear_interpolate_value_row, axis=0)
+
+                return new_traj
+
+
 def trim_outside_TMA(traj, config):
     countOutsideTMA = 0
 
@@ -228,17 +262,18 @@ class Flight:
             raise Exception("Unknown data format.")
 
         # Find the entry-TMA data point
-        interpolated_traj, intersect_TMA_index = intersectTMA(traj, config['airport'])
+        interpolated_traj_1, intersect_TMA_index = intersectTMA(traj, config['airport'])
+        interpolated_traj_2 = intersectLandingPoint(interpolated_traj_1)
 
         # Retrieve 2 data points before entering TMA
         if intersect_TMA_index < 1:
             raise Exception("Cannot retrieve 2 data points before entering TMA.")
         else:
-            self.first_point_data = interpolated_traj[intersect_TMA_index - 1]
-            self.second_point_data = interpolated_traj[intersect_TMA_index]
+            self.first_point_data = interpolated_traj_2[intersect_TMA_index - 1]
+            self.second_point_data = interpolated_traj_2[intersect_TMA_index]
 
         # Trim data points outside TMA
-        self.traj = trim_outside_TMA(interpolated_traj, config)
+        self.traj = trim_outside_TMA(interpolated_traj_2, config)
 
         # Average time in TMA is approximate 10 minutes --> exclude flight having less than 10 data points (choose 5)
         if self.traj.shape[0] < 5:
