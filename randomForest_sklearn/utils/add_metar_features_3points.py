@@ -22,22 +22,22 @@ def wind_time(data, wind):
 feature = pd.read_csv('../../featureExtraction_3points/extracted_features_3points.csv')
 metar = pd.read_csv('../../data/VVTS_metar.csv')
 
-time_in_TMA = []
 wind_speed = []
 visibility = []
+skyc1 = []
 
 for i in range(len(feature)):
-    time_in_TMA.append(feature['arrival_time'].iloc[i] - feature['entry_time'].iloc[i])
-
     index_wind = wind_time(feature['entry_time'].iloc[i], metar)
+
     wind_speed.append(metar['wind_speed'].iloc[index_wind])
     visibility.append(metar['visibility'].iloc[index_wind])
+    skyc1.append(metar['skyc1'].iloc[index_wind])
 
     print(i)
 
-feature['time_in_TMA'] = time_in_TMA
 feature['wind_speed'] = wind_speed
 feature['visibility'] = visibility
+feature['skyc1'] = skyc1
 
 # Export features
 feature.to_csv('../final_data_3points.csv', index=False)

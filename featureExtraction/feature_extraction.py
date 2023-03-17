@@ -41,13 +41,16 @@ if __name__ == "__main__":
                 flight = Flight(flightDirectory, config)
 
                 data_dict = {"flight": flight_name.split(".")[0], "date": date,
-                             "entry_waypoint": flight.entry_waypoint, "landing_runway": flight.landing_runway,
+                             "landing_runway": flight.landing_runway,
+
                              "entry_latitude": flight.traj[0][0] - 10.8188,
                              "entry_longitude": flight.traj[0][1] - 106.652,
-                             "entry_altitude": flight.traj[0][4], "entry_ground_speed": flight.traj[0][2],
+                             "entry_altitude": flight.traj[0][4],
+                             "entry_ground_speed": flight.traj[0][2],
                              "entry_heading_angle": flight.traj[0][5],
+
                              "entry_time": flight.traj[0][3], "arrival_time": flight.traj[flight.landing_data][3],
-                             "entry_time_HCM": flight.entry_time_HCM, "arrival_time_HCM": flight.arrival_time_HCM,
+                             "transit_time": flight.traj[flight.landing_data][3] - flight.traj[0][3],
                              "distance_to_airport": flight.distance_to_airport, "model_type": flight.type}
 
                 df_dictionary = pd.DataFrame([data_dict])

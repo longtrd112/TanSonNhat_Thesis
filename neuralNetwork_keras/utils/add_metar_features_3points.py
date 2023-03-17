@@ -25,7 +25,7 @@ metar = pd.read_csv('../../data/VVTS_metar.csv')
 transit_time = []
 wind_speed = []
 visibility = []
-skyc = []
+skyc1 = []
 
 for i in range(len(feature)):
     transit_time.append(feature['arrival_time'].iloc[i] - feature['entry_time'].iloc[i])
@@ -40,7 +40,7 @@ for i in range(len(feature)):
 feature['transit_time'] = transit_time
 feature['wind_speed'] = wind_speed
 feature['visibility'] = visibility
-feature['skyc'] = skyc
+feature['skyc1'] = skyc1
 
 # Export features
 feature.to_csv('../final_data_3points.csv', index=False)

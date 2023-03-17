@@ -29,10 +29,6 @@ class CreateNeuralNetworkModel:
             data.X_train, data.y_train, data.X_val, data.y_val, data.X_test, data.y_test, data.X, data.y
         number_of_features = data.number_of_features
 
-        # X_train = X_train.drop(['skyc1'], axis=1)
-        # X_val = X_val.drop(['skyc1'], axis=1)
-        # X_test = X_test.drop(['skyc1'], axis=1)
-
         # # Features histogram
         # for feature in data.X.columns:
         #     plt.hist(data.X[feature])
@@ -44,7 +40,6 @@ class CreateNeuralNetworkModel:
         batch_size = 64
 
         optimizer = tf.keras.optimizers.Adam(epsilon=10e-4, clipnorm=1)
-
         plateau = tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=0.000001)
         early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, min_delta=400, verbose=0)
 
@@ -83,4 +78,4 @@ class CreateNeuralNetworkModel:
 
 # Test
 # model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"), loop=False)
-# model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)
+model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)

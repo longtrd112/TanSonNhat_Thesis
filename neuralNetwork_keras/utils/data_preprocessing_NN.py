@@ -117,7 +117,7 @@ class Data3:
             dataFile = dataFile.drop(['distance_to_airport'], axis=1)
 
             X = dataFile[self.features]
-            y = pd.DataFrame(dataFile, columns=['time_in_TMA'], index=dataFile.index)
+            y = pd.DataFrame(dataFile, columns=['transit_time'], index=dataFile.index)
 
             # Dropping outliers
             # for feature in self.features_with_outliers:

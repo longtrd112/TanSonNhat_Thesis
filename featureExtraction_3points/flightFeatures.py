@@ -194,19 +194,10 @@ def find_entry_waypoint(traj, config):
     return entry_waypoint
 
 
-def find_landing_runway(simplified_near_airport, config):
-    landing_waypoint = ""
-    min_distance = 999
-
-    landing_coord = [simplified_near_airport[-1][0], simplified_near_airport[-1][1]]
-
-    for wp in config['iaf']:
-        if min_distance > distance(landing_coord, config['waypoint'][wp]):
-            min_distance = distance(landing_coord, config['waypoint'][wp])
-            landing_waypoint = wp
-
-    if landing_waypoint == "XIMLA":
+def find_landing_runway(landing_coord, config):
+    if distance(landing_coord, config['runway']['07L']) > distance(landing_coord, config['runway']['25L']):
         landing_runway = "25RL"
+
     else:
         landing_runway = "07RL"
 
@@ -281,19 +272,19 @@ class Flight:
 
         # Instead of detecting arrival route which is insufficient,
         # locating entry waypoint and landing runway is a better choice
-        self.entry_waypoint = find_entry_waypoint(self.traj, self.config)
+        # self.entry_waypoint = find_entry_waypoint(self.traj, self.config)
         self.landing_data = find_landing_location(self.traj)
 
         # Extracting entry time and arrival time in order to calculate time in TMA for prediction
-        self.entry_time_HCM = get_time_HCM(self.traj[0][3])
-        self.arrival_time_HCM = get_time_HCM(self.traj[self.landing_data][3])
+        # self.entry_time_HCM = get_time_HCM(self.traj[0][3])
+        # self.arrival_time_HCM = get_time_HCM(self.traj[self.landing_data][3])
 
         # Addition feature other than entry lat, long
         self.distance_to_airport = distance(self.traj[0], config['airport'])
 
         # Landing runway
-        self.simplified_near_airport = trim_near_airport(self.traj, config["waypoint"])
-        self.landing_runway = find_landing_runway(self.simplified_near_airport, self.config)
+        # self.simplified_near_airport = trim_near_airport(self.traj, config["waypoint"])
+        self.landing_runway = find_landing_runway(self.traj[self.landing_data], self.config)
 
         # Get model type: light/medium/heavy/super or NaN
         model = str(df['aircraft_model'].iloc[0])

@@ -52,7 +52,7 @@ class Data1:
             self.features = ['entry_latitude', 'entry_longitude', 'entry_altitude',
                              'entry_ground_speed', 'entry_heading_angle',
                              'model_type', 'landing_runway',
-                             'wind_speed', 'visibility', "skyc1"]
+                             'wind_speed', 'visibility', 'skyc1']
             self.features_with_outliers = []
 
             columns_to_standard = ['entry_altitude', 'entry_ground_speed']
@@ -65,7 +65,7 @@ class Data1:
             dataFile = dataFile.drop(['distance_to_airport'], axis=1)
 
             X = dataFile[self.features]
-            y = pd.DataFrame(dataFile, columns=['time_in_TMA'], index=dataFile.index)
+            y = pd.DataFrame(dataFile, columns=['transit_time'], index=dataFile.index)
 
             # Splitting data set
             X_train, self.y_train, X_test, self.y_test = split_data(X, y)
@@ -104,7 +104,8 @@ class Data3:
 
             columns_to_robust = ['first_latitude', 'second_latitude', 'first_longitude', 'second_longitude']
             columns_to_standard = ['entry_altitude', 'entry_ground_speed',
-                                   'first_ground_speed', 'second_ground_speed']
+                                   'first_ground_speed', 'second_ground_speed',
+                                   'first_altitude', 'second_altitude']
             columns_to_onehot = ['model_type', 'landing_runway']
             columns_to_ordinal = ['skyc1']
             column_not_to_minmax = columns_to_robust + columns_to_standard + columns_to_onehot + columns_to_ordinal
@@ -114,7 +115,7 @@ class Data3:
             dataFile = dataFile.drop(['distance_to_airport'], axis=1)
 
             X = dataFile[self.features]
-            y = pd.DataFrame(dataFile, columns=['time_in_TMA'], index=dataFile.index)
+            y = pd.DataFrame(dataFile, columns=['transit_time'], index=dataFile.index)
 
             # Dropping outliers
             # for feature in self.features_with_outliers:

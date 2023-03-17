@@ -1,0 +1,3 @@
+Average mean absolute error:  124.5341386921654
+Average root mean squared error:  239.63280527063762
+Average mean absolute percentage error:  13.09178527322422

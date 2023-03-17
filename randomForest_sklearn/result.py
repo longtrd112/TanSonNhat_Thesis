@@ -33,19 +33,19 @@ history_dict = {
 }
 
 if file_name == 'final_data.csv':
-    with open('result_output_random_forest.txt', 'w') as f:
+    with open('result/result_output_random_forest.txt', 'w') as f:
         print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
         print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
         print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
 
     history = pd.DataFrame(data=history_dict)
-    history.to_csv('loss_history_random_forest.csv', index=False)
+    history.to_csv('result/loss_history_random_forest.csv', index=False)
 
 else:
-    with open('result_output_random_forest_3points.txt', 'w') as f:
+    with open('result/result_output_random_forest_3points.txt', 'w') as f:
         print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
         print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
         print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
 
     history = pd.DataFrame(data=history_dict)
-    history.to_csv('loss_history_random_forest_3points.csv', index=False)
+    history.to_csv('result/loss_history_random_forest_3points.csv', index=False)
