@@ -41,7 +41,7 @@ class CreateNeuralNetworkModel:
 
         optimizer = tf.keras.optimizers.Adam(epsilon=10e-4, clipnorm=1)
         plateau = tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=0.000001)
-        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, min_delta=400, verbose=0)
+        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, min_delta=20, verbose=0)
 
         model = tf.keras.Sequential([
             tf.keras.layers.Dense(units=100, activation='relu', kernel_regularizer='l1_l2',

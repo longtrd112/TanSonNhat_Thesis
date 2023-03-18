@@ -43,12 +43,12 @@ class CreateRandomForestModel:
 
         else:                                       # 1 entry-TMA point data
             hyper_parameters = {
-                'max_depth': [10, 11, 12, 13, 14],
-                'max_features': [4, 5, 6, 7, 8],
+                'max_depth': [12, 13, 14, 15, 16],
+                'max_features': [4, 5, 6, 7],
                 'min_samples_leaf': [1, 2, 3]
             }
 
-        grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42, n_estimators=1000),
+        grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42, n_estimators=3000),
                                           param_grid=hyper_parameters, n_jobs=-1, random_state=42, verbose=1,
                                           scoring='neg_mean_absolute_error')
         grid_search.fit(X_train, y_train.values.ravel())
@@ -71,5 +71,5 @@ class CreateRandomForestModel:
 
 
 # Test
-model_1 = CreateRandomForestModel(data=get_data(file_name='final_data.csv'), loop=False)
+# model_1 = CreateRandomForestModel(data=get_data(file_name='final_data.csv'), loop=False)
 # model_3 = CreateRandomForestModel(data=get_data(file_name='final_data_3points.csv'), loop=False)
