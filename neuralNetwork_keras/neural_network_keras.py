@@ -1,6 +1,7 @@
 import tensorflow as tf
 import pandas as pd
 import numpy as np
+import time
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from neuralNetwork_keras.utils.data_preprocessing_NN import Data1, Data3
@@ -21,7 +22,7 @@ def get_data(file_name):
 
 
 class CreateNeuralNetworkModel:
-    def __init__(self, data, loop):
+    def __init__(self, data):
         self.data = data
 
         # Data after preprocessing: dropping outliers, splitting training, scaling features
@@ -58,6 +59,7 @@ class CreateNeuralNetworkModel:
         result = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val),
                            batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=2)
         model.summary()
+        self.model = model
 
         # Prediction
         y_predict = model.predict(X_test, verbose=0)
@@ -68,16 +70,18 @@ class CreateNeuralNetworkModel:
         self.rmse = np.sqrt(mean_squared_error(y_test, y_predict))
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict) / np.abs(y_test.to_numpy())))
 
-        if not loop:
-            # Plot loss history
-            PlotLoss(result=result, data=data, model=model)
-            plt.show()
+        # Saving figures
+        figure_numbering = int(time.time())
+        figure_name = f"figures/figure_{figure_numbering}.png"
+        PlotLoss(result=result, data=data, model=model)
+        plt.savefig(figure_name, bbox_inches='tight')
+        plt.clf()
 
-            # # Plot feature importance
-            # plot_feature_importance(model, X, y)
-            # plt.show()
+        # # Plot feature importance
+        # plot_feature_importance(model, X, y)
+        # plt.show()
 
 
 # Test
 # model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"), loop=False)
-model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)
+# model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)

@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import time
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -24,7 +25,7 @@ def get_data(file_name):
 
 
 class CreateRandomForestModel:
-    def __init__(self, data, loop):
+    def __init__(self, data):
         self.data = data
 
         # Data after preprocessing: dropping outliers, splitting training, scaling features
@@ -56,6 +57,8 @@ class CreateRandomForestModel:
         print("Optimal hyperparameter value: ", grid_search.best_params_)
         print("Best grid search score: ", grid_search.best_score_)
 
+        self.model = grid_search
+
         # Prediction
         y_predict = grid_search.predict(X_test)
 
@@ -64,10 +67,12 @@ class CreateRandomForestModel:
         self.rmse = np.sqrt(mean_squared_error(y_test.to_numpy(), y_predict.reshape(-1, 1)))
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict.reshape(-1, 1)) / np.abs(y_test.to_numpy())))
 
-        # Plot feature importance
-        if not loop:
-            plot_feature_importance(grid_search, data)
-            plt.show()
+        # Saving figures
+        figure_numbering = int(time.time())
+        figure_name = f"figures/figure_{figure_numbering}.png"
+        plot_feature_importance(grid_search, data)
+        plt.savefig(figure_name, bbox_inches='tight')
+        plt.clf()
 
 
 # Test

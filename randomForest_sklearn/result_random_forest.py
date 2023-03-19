@@ -12,7 +12,7 @@ error_count = 0
 
 for i in range(0, 10):
     try:
-        model = CreateRandomForestModel(data=get_data(file_name), loop=True)
+        model = CreateRandomForestModel(data=get_data(file_name))
 
         if model.mape > 20:
             error_count += 1

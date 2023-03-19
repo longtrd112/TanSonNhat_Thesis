@@ -51,8 +51,8 @@ for flight in os.listdir('../allFlights'):
     except (Exception,):
         continue
 
-with open("../data_x_1.pkl", "wb") as f:
+with open("../sequentialData/data_x_new.pkl", "wb") as f:
     pickle.dump(np.array(data_x), f)
 
-with open("../data_y_1.pkl", "wb") as f:
+with open("../sequentialData/data_y_new.pkl", "wb") as f:
     pickle.dump(np.array(data_y), f)
