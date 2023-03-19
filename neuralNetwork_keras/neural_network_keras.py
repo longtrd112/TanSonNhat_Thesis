@@ -39,6 +39,7 @@ class CreateNeuralNetworkModel:
         max_epochs = 100
         batch_size = 64
 
+        # Hyperparameter tuning
         optimizer = tf.keras.optimizers.Adam(epsilon=10e-4, clipnorm=1)
         plateau = tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=0.000001)
         early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, min_delta=20, verbose=0)
@@ -53,6 +54,7 @@ class CreateNeuralNetworkModel:
         model.compile(loss=tf.keras.losses.mean_absolute_error, optimizer=optimizer,
                       metrics=[tf.keras.metrics.MeanAbsoluteError(), tf.keras.metrics.RootMeanSquaredError()])
 
+        # Training
         result = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val),
                            batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=2)
         model.summary()

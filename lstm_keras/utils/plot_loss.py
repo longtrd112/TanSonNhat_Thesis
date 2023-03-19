@@ -12,6 +12,7 @@ def plot_loss_history(result, start_epoch):
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
     plt.legend()
+    plt.tight_layout()
 
     return plt.gca()
 
@@ -32,15 +33,10 @@ class PlotLoss:
         plot_loss_history(result, start_epoch=2)
 
         # Plot total loss of data set
-        plt.hlines(xmin=5, xmax=(len(result.history['loss']) - 1),
+        plt.hlines(xmin=3, xmax=(len(result.history['loss']) - 1),
                    y=mean_absolute_error(data.y_test, model.predict(data.X_test, verbose=0)),
                    label='Test error', color='c')
-        # plt.hlines(xmin=5, xmax=(len(result.history['loss']) - 1),
-        #            y=mean_absolute_error(data.y_val, model.predict(data.X_val, verbose=0)),
-        #            label='Val error', color='m')
-        # plt.hlines(xmin=5, xmax=(len(result.history['loss']) - 1),
-        #            y=mean_absolute_error(data.y_train, model.predict(data.X_train, verbose=0)),
-        #            label='Train error', color='y')
 
         plt.legend()
+        plt.tight_layout()
         plt.gca()

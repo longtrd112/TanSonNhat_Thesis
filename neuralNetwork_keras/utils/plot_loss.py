@@ -12,6 +12,7 @@ def plot_loss_history(result, start_epoch):
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
     plt.legend()
+    plt.tight_layout()
 
     return plt.gca()
 
@@ -37,4 +38,5 @@ class PlotLoss:
                    label='Test error', color='c')
 
         plt.legend()
+        plt.tight_layout()
         plt.gca()
