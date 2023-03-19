@@ -39,7 +39,7 @@ if file_name == 'final_data.csv':
         print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
 
     history = pd.DataFrame(data=history_dict)
-    history.to_csv('results/loss_history_neural_network.csv', index=False)
+    history.to_csv('results/error_history_neural_network.csv', index=False)
 
 else:
     with open('results/result_output_neural_network_3points.txt', 'w') as f:
@@ -48,4 +48,4 @@ else:
         print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
 
     history = pd.DataFrame(data=history_dict)
-    history.to_csv('results/loss_history_neural_network_3points.csv', index=False)
+    history.to_csv('results/error_history_neural_network_3points.csv', index=False)
