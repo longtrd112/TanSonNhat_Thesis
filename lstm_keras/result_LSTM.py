@@ -20,12 +20,9 @@ for i in range(0, 100):
     try:
         model = CreateLSTMModel(data_x=data_x, data_y=data_y)
 
-        if model.mape > 20:
-            error_count += 1
-        else:
-            MAE_history.append(model.mae)
-            RMSE_history.append(model.rmse)
-            MAPE_history.append(model.mape)
+        MAE_history.append(model.mae)
+        RMSE_history.append(model.rmse)
+        MAPE_history.append(model.mape)
 
     except Exception as e:
         error_count += 1
