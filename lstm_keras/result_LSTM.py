@@ -5,15 +5,14 @@ import warnings
 from lstm_keras.long_short_term_memory_keras import CreateLSTMModel
 warnings.filterwarnings("ignore")
 
-with open("sequentialData/data_x_new.pkl", "rb") as f:
+with open("sequentialData/data_x.pkl", "rb") as f:
     data_x = pickle.load(f)
-with open("sequentialData/data_y_new.pkl", "rb") as f:
+with open("sequentialData/data_y.pkl", "rb") as f:
     data_y = pickle.load(f)
 
 MAE_history = []
 RMSE_history = []
 MAPE_history = []
-error_count = 0
 
 for i in range(0, 100):
     print(i)
@@ -25,7 +24,6 @@ for i in range(0, 100):
         MAPE_history.append(model.mape)
 
     except Exception as e:
-        error_count += 1
         print(e)
 
 history_dict = {

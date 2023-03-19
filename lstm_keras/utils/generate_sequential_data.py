@@ -25,25 +25,22 @@ seq_len = 3
 data_x = []
 data_y = []
 
-for flight in os.listdir('../allFlights'):
+for flight in os.listdir('../allFlightsData'):
     try:
-        data = pd.read_csv(os.path.join('../allFlights', flight))
-
-        # Drop the landing point
-        data = data[data['transit_time'] > 0]
+        data = pd.read_csv(os.path.join('../allFlightsData', flight))
 
         # Scaling features
-        data = dataFitTransform(data, RobustScaler(), ['latitude', 'longitude'])
-        data = dataFitTransform(data, MinMaxScaler(), ['altitude', 'heading_angle', 'ground_speed'])
+        data['altitude'] = data['altitude'] / 35000
+        data['ground_speed'] = data['ground_speed'] / 400
 
-        X = data[['latitude', 'longitude', 'altitude', 'ground_speed', 'heading_angle']]
+        X = data[['latitude', 'longitude', 'altitude', 'ground_speed', 'heading_angle_sine', 'heading_angle_cosine']]
         y = data.transit_time.values
         y = y.reshape(-1, 1)
         data = np.concatenate((X, y), axis=1)
 
         for j in range(len(data) - seq_len):
             seq_in = data[j:j + seq_len]
-            seq_out = data[j + seq_len, -1]
+            seq_out = data[j + seq_len - 1, -1]
 
             data_x.append(seq_in)
             data_y.append(seq_out)
@@ -51,8 +48,8 @@ for flight in os.listdir('../allFlights'):
     except (Exception,):
         continue
 
-with open("../sequentialData/data_x_new.pkl", "wb") as f:
+with open("../sequentialData/data_x.pkl", "wb") as f:
     pickle.dump(np.array(data_x), f)
 
-with open("../sequentialData/data_y_new.pkl", "wb") as f:
+with open("../sequentialData/data_y.pkl", "wb") as f:
     pickle.dump(np.array(data_y), f)

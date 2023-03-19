@@ -19,7 +19,7 @@ class CreateLSTMModel:
 
         # Model
         max_epochs = 30
-        batch_size = 4096
+        batch_size = 2048
 
         # Hyperparameter tuning
         optimizer = tf.keras.optimizers.Adam(epsilon=10e-4, clipnorm=1)
@@ -43,15 +43,15 @@ class CreateLSTMModel:
         self.model = model
 
         # Evaluate the metrics
-        evaluate = model.evaluate(self.X_test, self.y_test)
+        model.evaluate(self.X_test, self.y_test)
 
         # Prediction
         y_predict = model.predict(self.X_test, verbose=0)
 
         # Evaluate the metrics
-        self.mae = mean_absolute_error(self.y_test, y_predict)
-        self.rmse = np.sqrt(mean_squared_error(self.y_test, y_predict))
-        self.mape = 100 * np.mean(np.abs((self.y_test.to_numpy() - y_predict) / np.abs(self.y_test.to_numpy())))
+        self.mae = mean_absolute_error(self.y_test.reshape(-1, 1), y_predict)
+        self.rmse = np.sqrt(mean_squared_error(self.y_test.reshape(-1, 1), y_predict))
+        self.mape = 100 * np.mean(np.abs((self.y_test.reshape(-1, 1) - y_predict) / np.abs(self.y_test.reshape(-1, 1))))
 
         # Saving figures
         figure_numbering = int(time.time())
