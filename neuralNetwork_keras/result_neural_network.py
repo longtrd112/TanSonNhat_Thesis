@@ -12,7 +12,7 @@ RMSE_history = []
 MAPE_history = []
 error_count = 0
 
-for i in range(0, 10):
+for i in range(0, 100):
     print(i)
     try:
         model = CreateNeuralNetworkModel(data=get_data(file_name))

@@ -1,4 +1,5 @@
 import pandas as pd
+import math
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, StandardScaler, RobustScaler, OrdinalEncoder
 
@@ -12,6 +13,29 @@ def drop_outliers_IQR(df, feature):
     drop_outliers = df.drop(df[(df[feature] < (q1 - 1.5 * IQR)) | (df[feature] > (q3 + 1.5 * IQR))].index)
 
     return drop_outliers
+
+
+def convert_heading_angle(data):
+    for feature in data.columns:
+        if 'heading_angle' in feature:
+            s = []
+            c = []
+
+            for i in range(len(data)):
+                s.append(math.sin(math.radians(data[feature].iloc[i])))
+                c.append(math.cos(math.radians(data[feature].iloc[i])))
+
+            sine_column_name = feature + '_sine'
+            cosine_column_name = feature + '_cosine'
+
+            data[sine_column_name] = s
+            data[cosine_column_name] = c
+
+    for feature in data.columns:
+        if 'heading_angle' in feature and 'sine' not in feature:
+            data = data.drop([feature], axis=1)
+
+    return data
 
 
 def split_data(X, y):
@@ -57,17 +81,19 @@ class Data1:
                              'wind_speed', 'visibility', 'skyc1']
             self.features_with_outliers = []
 
-            columns_to_standard = ['entry_altitude', 'entry_ground_speed']
-            columns_to_onehot = ['model_type', 'landing_runway']
-            columns_to_ordinal = ['skyc1']
-            column_not_to_minmax = columns_to_standard + columns_to_onehot + columns_to_ordinal
-            columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
-
             dataFile = dataFile.drop(dataFile[dataFile.distance_to_airport < 50].index, inplace=False)
             dataFile = dataFile.drop(['distance_to_airport'], axis=1)
 
             X = dataFile[self.features]
+            X = convert_heading_angle(X)
             y = pd.DataFrame(dataFile, columns=['transit_time'], index=dataFile.index)
+
+            columns_to_standard = ['entry_altitude', 'entry_ground_speed']
+            columns_to_onehot = ['model_type', 'landing_runway']
+            columns_to_ordinal = ['skyc1']
+            column_not_to_minmax = columns_to_standard + columns_to_onehot + columns_to_ordinal
+            columns_to_minmax = [f for f in X.columns.to_list()
+                                 if f not in column_not_to_minmax and 'heading_angle' not in f]
 
             # Splitting data set
             X_train, self.y_train, X_val, self.y_val, X_test, self.y_test = split_data(X, y)
@@ -75,13 +101,14 @@ class Data1:
 
             # Scaling features
             Feature_Processing_Dict = {
-                'min_max_scale': [MinMaxScaler(), columns_to_minmax],
-                'standard_scale': [StandardScaler(), columns_to_standard],
+                'min_max_scaling': [MinMaxScaler(), columns_to_minmax],
+                'standard_scaling': [StandardScaler(), columns_to_standard],
                 'ordinal_encoding': [OrdinalEncoder(), columns_to_ordinal],
                 'one_hot_encoding': [OneHotEncoder(sparse_output=False), columns_to_onehot]
             }
 
             self.X_train, self.X_val, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_val, X_test)
+
             self.number_of_features = len(self.X_train.columns)
 
             self.X = pd.concat([self.X_train, self.X_val, self.X_test], axis=0)
@@ -104,6 +131,13 @@ class Data3:
                              'wind_speed', 'visibility', 'skyc1']
             self.features_with_outliers = []
 
+            dataFile = dataFile[dataFile.distance_to_airport >= 50]
+            dataFile = dataFile.drop(['distance_to_airport'], axis=1)
+
+            X = dataFile[self.features]
+            X = convert_heading_angle(X)
+            y = pd.DataFrame(dataFile, columns=['transit_time'], index=dataFile.index)
+
             columns_to_robust = ['first_latitude', 'first_longitude', 'second_latitude', 'second_longitude']
             columns_to_standard = ['entry_altitude', 'entry_ground_speed',
                                    'first_ground_speed', 'second_ground_speed',
@@ -111,13 +145,9 @@ class Data3:
             columns_to_onehot = ['model_type', 'landing_runway']
             columns_to_ordinal = ['skyc1']
             column_not_to_minmax = columns_to_robust + columns_to_standard + columns_to_onehot + columns_to_ordinal
-            columns_to_minmax = [f for f in self.features if f not in column_not_to_minmax]
-
-            dataFile = dataFile.drop(dataFile[dataFile.distance_to_airport < 50].index, inplace=False)
-            dataFile = dataFile.drop(['distance_to_airport'], axis=1)
-
-            X = dataFile[self.features]
-            y = pd.DataFrame(dataFile, columns=['transit_time'], index=dataFile.index)
+            columns_to_minmax = [f for f in X.columns.to_list()
+                                 if f not in column_not_to_minmax and 'heading_angle' not in f]
+            print(columns_to_minmax)
 
             # Dropping outliers
             # for feature in self.features_with_outliers:
@@ -137,7 +167,11 @@ class Data3:
                 'one_hot_encoding': [OneHotEncoder(sparse_output=False), columns_to_onehot]
             }
 
-            self.X_train, self.X_val, self.X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_val, X_test)
+            X_train, X_val, X_test = featuresProcessing(Feature_Processing_Dict, X_train, X_val, X_test)
+            self.X_train = convert_heading_angle(X_train)
+            self.X_val = convert_heading_angle(X_val)
+            self.X_test = convert_heading_angle(X_test)
+
             self.number_of_features = len(self.X_train.columns)
 
             self.X = pd.concat([self.X_train, self.X_val, self.X_test], axis=0)

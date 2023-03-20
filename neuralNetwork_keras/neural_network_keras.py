@@ -46,9 +46,9 @@ class CreateNeuralNetworkModel:
         early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, min_delta=20, verbose=0)
 
         model = tf.keras.Sequential([
-            tf.keras.layers.Dense(units=100, activation='relu', kernel_regularizer='l1_l2',
+            tf.keras.layers.Dense(units=100, activation='relu', kernel_regularizer=tf.keras.regularizers.l1_l2(),
                                   input_shape=(number_of_features,)),
-            tf.keras.layers.Dense(units=50, activation='relu', kernel_regularizer='l1_l2'),
+            tf.keras.layers.Dense(units=50, activation='relu', kernel_regularizer=tf.keras.regularizers.l1_l2()),
             tf.keras.layers.Dense(units=1, activation=tf.keras.layers.LeakyReLU(alpha=0.005))
         ])
 
@@ -81,6 +81,7 @@ class CreateNeuralNetworkModel:
         # plot_feature_importance(model, X, y)
         # plt.show()
 
+
 # Test
-# model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"), loop=False)
-# model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"), loop=False)
+# model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"))
+# model_3 = CreateNeuralNetworkModel(data=get_data(file_name="final_data_3points.csv"))
