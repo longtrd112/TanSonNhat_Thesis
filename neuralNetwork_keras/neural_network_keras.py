@@ -1,7 +1,7 @@
 import tensorflow as tf
 import pandas as pd
 import numpy as np
-import time
+import datetime
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from neuralNetwork_keras.utils.data_preprocessing_NN import Data1, Data3
@@ -71,7 +71,7 @@ class CreateNeuralNetworkModel:
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict) / np.abs(y_test.to_numpy())))
 
         # Saving figures
-        figure_numbering = int(time.time())
+        figure_numbering = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
         figure_name = f"figures/figure_{figure_numbering}.png"
         PlotLoss(result=result, data=data, model=model)
         plt.savefig(figure_name, bbox_inches='tight')

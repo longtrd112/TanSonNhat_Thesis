@@ -1,0 +1,3 @@
+Average mean absolute error:  2.265308999311164  seconds.
+Average root mean squared error:  4.33729709086725  seconds.
+Average mean absolute percentage error:  0.2854622754196778  %

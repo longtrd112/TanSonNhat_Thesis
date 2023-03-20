@@ -22,7 +22,7 @@ class PlotLoss:
         self.result = result
 
         fig, (ax1, ax2) = plt.subplots(nrows=2)
-        plt.suptitle("Loss vs Validation Loss (MSE)")
+        plt.suptitle("Loss vs Validation Loss (Mean Absolute Error)")
 
         # Plot from beginning
         plt.sca(ax1)

@@ -5,16 +5,16 @@ import warnings
 from lstm_keras.long_short_term_memory_keras import CreateLSTMModel
 warnings.filterwarnings("ignore")
 
-with open("sequentialData/data_x.pkl", "rb") as f:
+with open("sequentialData/data_x_new.pkl", "rb") as f:
     data_x = pickle.load(f)
-with open("sequentialData/data_y.pkl", "rb") as f:
+with open("sequentialData/data_y_new.pkl", "rb") as f:
     data_y = pickle.load(f)
 
 MAE_history = []
 RMSE_history = []
 MAPE_history = []
 
-for i in range(0, 100):
+for i in range(0, 30):
     print(i)
     try:
         model = CreateLSTMModel(data_x=data_x, data_y=data_y)
@@ -33,11 +33,12 @@ history_dict = {
 }
 
 with open('results/result_output_LSTM.txt', 'w') as f:
-    print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
-    print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
-    print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
+    print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), ' seconds.', file=f)
+    print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), ' seconds.', file=f)
+    print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), ' %', file=f)
 
 if not os.path.isfile('results/error_history_LSTM.csv'):
+    # Create CSV file and header row
     with open('results/error_history_LSTM.csv', 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(history_dict.keys())
