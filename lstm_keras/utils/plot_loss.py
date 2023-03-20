@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn.metrics import mean_absolute_error
 
 
-def plot_loss_history(result, start_epoch):
-    plot_range = range(start_epoch, len(result.history['loss']))
+def plot_loss_history(training, start_epoch):
+    plot_range = range(start_epoch, len(training.history['loss']))
 
-    plt.plot(plot_range, result.history['loss'][start_epoch - 1: -1], label='training loss')
-    plt.plot(plot_range, result.history['val_loss'][start_epoch - 1: -1], label='validation loss')
+    plt.plot(plot_range, training.history['loss'][start_epoch - 1: -1], label='training loss')
+    plt.plot(plot_range, training.history['val_loss'][start_epoch - 1: -1], label='validation loss')
 
-    plt.xticks(range(start_epoch, len(result.history['loss']), 2))
+    plt.xticks(range(start_epoch, len(training.history['loss']), 2))
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
     plt.legend()
@@ -18,24 +18,21 @@ def plot_loss_history(result, start_epoch):
 
 
 class PlotLoss:
-    def __init__(self, result, data, model):
-        self.result = result
-
+    def __init__(self, training, test, prediction):
         fig, (ax1, ax2) = plt.subplots(nrows=2)
         plt.suptitle("Loss vs Validation Loss (Mean Absolute Error)")
 
         # Plot from beginning
         plt.sca(ax1)
-        plot_loss_history(result, start_epoch=1)
+        plot_loss_history(training, start_epoch=1)
 
         # Plot early stopping
         plt.sca(ax2)
-        plot_loss_history(result, start_epoch=2)
+        plot_loss_history(training, start_epoch=2)
 
-        # Plot total loss of data set
-        plt.hlines(xmin=3, xmax=(len(result.history['loss']) - 1),
-                   y=mean_absolute_error(data.y_test, model.predict(data.X_test, verbose=0)),
-                   label='Test error', color='c')
+        # Plot total error of test set
+        plt.scatter(x=(len(training.history['loss']) - 1), y=mean_absolute_error(test, prediction),
+                    label='Test error', color='c')
 
         plt.legend()
         plt.tight_layout()

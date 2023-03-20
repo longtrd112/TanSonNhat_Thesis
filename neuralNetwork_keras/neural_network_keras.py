@@ -56,8 +56,8 @@ class CreateNeuralNetworkModel:
                       metrics=[tf.keras.metrics.MeanAbsoluteError(), tf.keras.metrics.RootMeanSquaredError()])
 
         # Training
-        result = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val),
-                           batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=2)
+        training = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val),
+                             batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=2)
         model.summary()
         self.model = model
 
@@ -73,14 +73,13 @@ class CreateNeuralNetworkModel:
         # Saving figures
         figure_numbering = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
         figure_name = f"figures/figure_{figure_numbering}.png"
-        PlotLoss(result=result, data=data, model=model)
+        PlotLoss(training=training, test=y_test, prediction=y_predict)
         plt.savefig(figure_name, bbox_inches='tight')
         plt.clf()
 
         # # Plot feature importance
         # plot_feature_importance(model, X, y)
         # plt.show()
-
 
 # Test
 # model_1 = CreateNeuralNetworkModel(data=get_data(file_name="final_data.csv"), loop=False)
