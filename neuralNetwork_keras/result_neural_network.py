@@ -5,7 +5,7 @@ from neural_network_keras import get_data, CreateNeuralNetworkModel
 
 warnings.filterwarnings("ignore")
 
-file_name = 'final_data.csv'
+file_name = 'final_data_3points.csv'
 
 MAE_history = []
 RMSE_history = []

@@ -1,0 +1,13 @@
+Average mean absolute error:  123.21455805651172
+Average root mean squared error:  237.36153727103087
+Average mean absolute percentage error:  12.902849979530757
+---
+'wind_speed'
+Average mean absolute error:  122.83462552588024
+Average root mean squared error:  236.51668419828206
+Average mean absolute percentage error:  12.840217907665398
+---
+'visibility'
+Average mean absolute error:  123.31841270995136
+Average root mean squared error:  238.0720324164795
+Average mean absolute percentage error:  13.005612521949857
