@@ -5,7 +5,7 @@ from neural_network_keras_withoutMETAR import get_data, CreateNeuralNetworkModel
 
 warnings.filterwarnings("ignore")
 
-file_name = 'final_data.csv'
+file_name = 'final_data_3points.csv'
 
 MAE_history = []
 RMSE_history = []
@@ -39,6 +39,8 @@ if file_name == 'final_data.csv':
         print('Average mean absolute error: ', sum(MAE_history) / len(MAE_history), file=f)
         print('Average root mean squared error: ', sum(RMSE_history) / len(RMSE_history), file=f)
         print('Average mean absolute percentage error: ', sum(MAPE_history) / len(MAPE_history), file=f)
+        print('Number of params: ', model.model.count_params(), file=f)
+        print('===')
 
     if not os.path.isfile('results_withoutMETAR/error_history_neural_network.csv'):
         with open('results_withoutMETAR/error_history_neural_network.csv', 'w', newline='') as csv_file:

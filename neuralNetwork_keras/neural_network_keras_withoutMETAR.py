@@ -1,9 +1,7 @@
 import tensorflow as tf
 import pandas as pd
-import numpy as np
 import datetime
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 from neuralNetwork_keras.utils.data_preprocessing_NN_withoutMETAR import Data1, Data3
 from neuralNetwork_keras.utils.plot_loss import PlotLoss
 from neuralNetwork_keras.utils.plot_feature_importance import plot_feature_importance
@@ -30,12 +28,6 @@ class CreateNeuralNetworkModel:
             data.X_train, data.y_train, data.X_val, data.y_val, data.X_test, data.y_test, data.X, data.y
         number_of_features = data.number_of_features
 
-        # # Features histogram
-        # for feature in data.X.columns:
-        #     plt.hist(data.X[feature])
-        #     plt.title(feature)
-        #     plt.show()
-
         # Model
         max_epochs = 100
         batch_size = 64
@@ -53,22 +45,25 @@ class CreateNeuralNetworkModel:
         ])
 
         model.compile(loss=tf.keras.losses.mean_absolute_error, optimizer=optimizer,
-                      metrics=[tf.keras.metrics.MeanAbsoluteError(), tf.keras.metrics.RootMeanSquaredError()])
+                      metrics=[tf.keras.metrics.MeanAbsoluteError(),
+                               tf.keras.metrics.RootMeanSquaredError(),
+                               tf.keras.metrics.MeanAbsolutePercentageError()])
 
         # Training
         training = model.fit(X_train, y_train, epochs=max_epochs, validation_data=(X_val, y_val),
-                             batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=2)
+                             batch_size=batch_size, callbacks=[plateau, early_stopping], verbose=0)
         model.summary()
         self.model = model
+        self.params = model.count_params()
 
         # Prediction
         y_predict = model.predict(X_test, verbose=0)
-        model.evaluate(X_test, y_test)
+        evaluate = model.evaluate(X_test, y_test)
 
         # Evaluate the metrics
-        self.mae = mean_absolute_error(y_test, y_predict)
-        self.rmse = np.sqrt(mean_squared_error(y_test, y_predict))
-        self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict) / np.abs(y_test.to_numpy())))
+        self.mae = evaluate[1]
+        self.rmse = evaluate[2]
+        self.mape = evaluate[3]
 
         # Saving figures
         figure_numbering = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
@@ -78,7 +73,7 @@ class CreateNeuralNetworkModel:
         plt.clf()
 
         # # Plot feature importance
-        # plot_feature_importance(model, X, y)
+        # plot_feature_importance(model, X_test, y_test)
         # plt.show()
 
 
