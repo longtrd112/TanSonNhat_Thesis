@@ -23,7 +23,7 @@ for flight in os.listdir('../allFlightsData'):
         data = np.concatenate((X, y), axis=1)
 
         for j in range(len(data) - seq_len):
-            seq_in = data[j:j + seq_len]
+            seq_in = data[j:j + seq_len, 0:-1]
             seq_out = data[j + seq_len - 1, -1]
 
             data_x.append(seq_in)

@@ -1,4 +1,0 @@
-Average mean absolute error:  123.33659417850455
-Average root mean squared error:  238.55387721110864
-Average mean absolute percentage error:  13.090966539284617
-Number of params:  6301

@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 import tensorflow as tf
+import pickle
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from lstm_keras.utils.plot_loss import PlotLoss
 from lstm_keras.utils.data_preprocessing_LSTM import Data
@@ -55,9 +56,29 @@ class CreateLSTMModel:
         self.rmse = np.sqrt(mean_squared_error(y_test.reshape(-1, 1), y_predict))
         self.mape = 100 * np.mean(np.abs((y_test.reshape(-1, 1) - y_predict) / np.abs(y_test.reshape(-1, 1))))
 
+        n_examples = 20
+        for i in range(n_examples):
+            # Choose a random example from the test set
+            example_idx = np.random.randint(0, len(X_test))
+
+            # Get the predicted and actual values for this example
+            pred_value = y_predict[example_idx]
+            actual_value = y_test[example_idx]
+
+            # Print out the predicted and actual values side-by-side
+            print(f"Example {i + 1}: Predicted={pred_value}, Actual={actual_value}")
+
         # Saving figures
         figure_numbering = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
         figure_name = f"figures/figure_{figure_numbering}.png"
         PlotLoss(training=training, test=y_test, prediction=y_predict)
         plt.savefig(figure_name, bbox_inches='tight')
         plt.clf()
+
+
+# Test
+with open("sequentialData/data_x_new.pkl", "rb") as f:
+    data_x = pickle.load(f)
+with open("sequentialData/data_y_new.pkl", "rb") as f:
+    data_y = pickle.load(f)
+model = CreateLSTMModel(data_x, data_y)
