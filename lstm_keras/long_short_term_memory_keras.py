@@ -20,19 +20,21 @@ class CreateLSTMModel:
             data.X_train, data.y_train, data.X_val, data.y_val, data.X_test, data.y_test
 
         # Model
-        max_epochs = 20
-        batch_size = 2048
+        max_epochs = 25
+        batch_size = 8192
 
         # Hyperparameter tuning
         optimizer = tf.keras.optimizers.Adam(epsilon=10e-4, clipnorm=1, learning_rate=0.0005)
         lr = tf.keras.callbacks.LearningRateScheduler(scheduler)
-        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, min_delta=5,
+        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, min_delta=10,
                                                           start_from_epoch=2, verbose=0)
 
         model = tf.keras.Sequential([
-            tf.keras.layers.LSTM(units=50, activation='relu',
+            tf.keras.layers.LSTM(units=100, activation='relu',
                                  input_shape=(seq_len, data_x.shape[-1]),
                                  kernel_regularizer=tf.keras.regularizers.l1_l2(l1=0.05, l2=0.05)),
+            tf.keras.layers.Dense(units=50, activation='relu', kernel_regularizer=tf.keras.regularizers.l1_l2()),
+            tf.keras.layers.Dense(units=25, activation='relu', kernel_regularizer=tf.keras.regularizers.l1_l2()),
             tf.keras.layers.Dense(units=1, activation=tf.keras.layers.LeakyReLU(alpha=0.005))
         ])
 
@@ -56,17 +58,17 @@ class CreateLSTMModel:
         self.rmse = np.sqrt(mean_squared_error(y_test.reshape(-1, 1), y_predict))
         self.mape = 100 * np.mean(np.abs((y_test.reshape(-1, 1) - y_predict) / np.abs(y_test.reshape(-1, 1))))
 
-        n_examples = 20
-        for i in range(n_examples):
-            # Choose a random example from the test set
-            example_idx = np.random.randint(0, len(X_test))
-
-            # Get the predicted and actual values for this example
-            pred_value = y_predict[example_idx]
-            actual_value = y_test[example_idx]
-
-            # Print out the predicted and actual values side-by-side
-            print(f"Example {i + 1}: Predicted={pred_value}, Actual={actual_value}")
+        # n_examples = 10
+        # for i in range(n_examples):
+        #     # Choose a random example from the test set
+        #     example_idx = np.random.randint(0, len(X_test))
+        #
+        #     # Get the predicted and actual values for this example
+        #     pred_value = y_predict[example_idx]
+        #     actual_value = y_test[example_idx]
+        #
+        #     # Print out the predicted and actual values side-by-side
+        #     print(f"Example {i + 1}: Predicted={pred_value}, Actual={actual_value}")
 
         # Saving figures
         figure_numbering = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
@@ -77,8 +79,8 @@ class CreateLSTMModel:
 
 
 # Test
-with open("sequentialData/data_x_new.pkl", "rb") as f:
-    data_x = pickle.load(f)
-with open("sequentialData/data_y_new.pkl", "rb") as f:
-    data_y = pickle.load(f)
-model = CreateLSTMModel(data_x, data_y)
+# with open("sequentialData/data_x_new.pkl", "rb") as f:
+#     data_x = pickle.load(f)
+# with open("sequentialData/data_y_new.pkl", "rb") as f:
+#     data_y = pickle.load(f)
+# model = CreateLSTMModel(data_x, data_y)

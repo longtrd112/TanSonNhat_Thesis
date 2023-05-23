@@ -32,14 +32,19 @@ class CreateRandomForestModel:
         X_train, y_train, X_test, y_test = \
             data.X_train, data.y_train, data.X_test, data.y_test
         number_of_features = data.number_of_features
-
+        print(X_train.columns)
         # Random forest model
         # Hyperparameter tuning with HalvingGridSearchCV (different for each input data set)
         if 'first_latitude' in X_train.columns:     # 3-points data
+            # hyper_parameters = {
+            #     'max_depth': [16, 17, 18, 19, 20, 21],
+            #     'max_features': [7, 8, 9, 10, 11, 12],
+            #     'min_samples_leaf': [1, 2, 3]
+            # }
             hyper_parameters = {
-                'max_depth': [16, 17, 18, 19, 20, 21],
-                'max_features': [7, 8, 9, 10, 11, 12],
-                'min_samples_leaf': [1, 2, 3]
+                'max_depth': [18],
+                'max_features': [10],
+                'min_samples_leaf': [2]
             }
 
         else:                                       # 1 entry-TMA point data
@@ -49,7 +54,7 @@ class CreateRandomForestModel:
                 'min_samples_leaf': [1, 2, 3]
             }
 
-        grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42, n_estimators=3000),
+        grid_search = HalvingGridSearchCV(estimator=RandomForestRegressor(random_state=42, n_estimators=1000),
                                           param_grid=hyper_parameters, n_jobs=-1, random_state=42, verbose=1,
                                           scoring='neg_mean_absolute_error')
         grid_search.fit(X_train, y_train.values.ravel())
@@ -68,13 +73,15 @@ class CreateRandomForestModel:
         self.mape = 100 * np.mean(np.abs((y_test.to_numpy() - y_predict.reshape(-1, 1)) / np.abs(y_test.to_numpy())))
 
         # Saving figures
-        figure_numbering = int(time.time())
-        figure_name = f"figures/figure_{figure_numbering}.png"
-        plot_feature_importance(grid_search, data)
-        plt.savefig(figure_name, bbox_inches='tight')
-        plt.clf()
+        # figure_numbering = int(time.time())
+        # figure_name = f"figures/figure_{figure_numbering}.png"
+        # plot_feature_importance(grid_search, data)
+        # plt.savefig(figure_name, bbox_inches='tight')
+        # plt.clf()
+
+        print(grid_search.best_estimator_.feature_importances_)
 
 
 # Test
 # model_1 = CreateRandomForestModel(data=get_data(file_name='final_data.csv'), loop=False)
-# model_3 = CreateRandomForestModel(data=get_data(file_name='final_data_3points.csv'), loop=False)
+model_3 = CreateRandomForestModel(data=get_data(file_name='final_data_3points.csv'))

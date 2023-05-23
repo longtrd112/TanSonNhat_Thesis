@@ -28,7 +28,7 @@ class PlotLoss:
 
         # Plot early stopping
         plt.sca(ax2)
-        plot_loss_history(training, start_epoch=2)
+        plot_loss_history(training, start_epoch=5)
 
         # Plot total error of test set
         plt.scatter(x=(len(training.history['loss']) - 1), y=mean_absolute_error(test, prediction),
